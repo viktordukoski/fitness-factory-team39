@@ -38,7 +38,7 @@ services:
   db:
     image: mariadb:11.4.13-noble
     cpus: 0.25
-    mem_limit: 512m
+    mem_limit: 384m
     environment:
       MARIADB_DATABASE: ${DB_NAME}
       MARIADB_USER: ${DB_USER}
