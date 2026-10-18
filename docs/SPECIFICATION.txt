@@ -1,0 +1,610 @@
+You are a senior full-stack software architect, PHP/MySQL developer, UI/UX designer, accessibility specialist, cybersecurity engineer, QA engineer, SEO specialist, and university project evaluator.
+
+Your task is to design and implement a complete, polished, production-style web application for **Fitness Factory in Ohrid, North Macedonia**.
+
+This is a university project for the **Business Practice 2025/2026** course. The selected organization is a real fitness business. Build a complete presentation website with useful gym-specific demonstration features.
+
+The course requirements supplied by the student include basic information, team/employees, services, contact form, contact information, news/blog, multilingual support, cookies, detailed information, and other elements relevant to the selected organization. Any web technology is allowed. Teams comprise 2–4 students. The project must be deployed on the FCSE system according to instructions that will be provided; one team member submits the website link on Courses.
+
+Assessment is 50 points from the teacher, 30 from classmates, 10 for reviewing at least three assigned projects, and 10 from an automated agent checking website pages and elements. The automated agent does NOT alone award the final grade of 10. The supplied deadline says September without an exact date or year. Do not invent missing course rules.
+
+The extensive application features below are project design requirements, not claims that the professor explicitly requires each feature.
+
+The goal is a coherent, responsive, multilingual, database-driven fitness website with a functional PHP backend. Every important page, navigation element, form, button and interaction must be discoverable and usable by human visitors and automated evaluators.
+
+REAL BUSINESS RESEARCH AND CONTENT BOUNDARIES
+
+Use the following research as a starting point and retain source attribution in project documentation:
+
+- Prosport's retrospective of 2023 projects, published 26 January 2024, identifies Fitness Factory in Ohrid and reports approximately 1,500 m², Nautilus Leverage and Inspiration equipment, Precor DSL and cardio equipment, Amila accessories, and Beka rubber flooring.
+  Source: https://prosportshop.rs/retrospektiva-nekoliko-projekata-2023-godine/
+- A project account shared on Aleksandar Jovanoski's LinkedIn profile reports 1,800 m² and describes bodybuilding, cardio and Pilates halls; a spa with steam bath, Finnish sauna, heated chairs and massage area; a cafeteria, supplement store and changing rooms. Treat this as historical project information, not confirmation of current service availability.
+  Source: https://mk.linkedin.com/in/aleksandar-jovanoski-634940237
+- Business directories list the location Plus Code 4RJ9+63Q, Ohrid, and associate the business with fitnessfactory.mk. Confirm the precise entrance, street address and current domain ownership before presenting them as official.
+  Source: https://www.ibusiness.bg/north-macedonia/ohrid/македония/fitness-factory
+
+The reported floor areas and building-history descriptions conflict. Do not publish a definitive area, opening date or origin story without confirmation. Do not repeat unverified claims such as zero emissions, regional superiority or exact equipment counts as established facts.
+
+PRIMARY SUPPLIED SOURCE: OFFICIAL INSTAGRAM SCREENSHOTS
+
+The student supplied screenshots from the official business Instagram. Use the following details in the site and seed data, ahead of generic directory descriptions:
+
+- Instagram: @fitnessfactory.mk — https://www.instagram.com/fitnessfactory.mk/
+- Display name: Fitness Factory
+- Category: Gym/Physical Fitness Center
+- Phone: +389 76 435 353; telephone link: tel:+38976435353
+- Address as displayed: 15th Korpus No.21, Ohrid 6000
+- Branding: yellow, black and white, with an interlocking FF emblem in a circular motif and FITNESS FACTORY wordmark. Use this visual direction. Exact official colour codes were not supplied. Use a clean authorized logo asset when available; do not use an entire Instagram screenshot as a logo.
+
+PUBLISHED PACKAGES — MACEDONIAN DENARS (MKD)
+
+Package | Stated access window | Price
+Single training session | Unspecified | 300 MKD
+One-week tourist pass | Unspecified | 1,000 MKD
+One month | 06:00–15:00 | 1,600 MKD
+One month | 06:00–22:00 | 2,000 MKD
+Three months | 06:00–15:00 | 4,350 MKD
+Three months | 06:00–22:00 | 5,400 MKD
+Six months | 06:00–15:00 | 7,700 MKD
+Six months | 06:00–22:00 | 9,600 MKD
+One year | 06:00–15:00 | 14,400 MKD
+One year | 06:00–22:00 | 18,000 MKD
+
+Seed these ten packages with exactly these prices. They are sourced published business prices, not invented demonstration prices. The price screenshot has no visible post date, so current validity remains unconfirmed. Record source/verification status in the CMS and show a concise note that the published prices are subject to confirmation. Transactions using these prices remain strictly simulated. Do not invent class/spa inclusions, discounts, fees, renewal conditions or refund policies.
+
+PUBLISHED OPENING HOURS
+
+Monday–Friday: 06:00–22:00
+Saturday: 08:00–22:00
+Sunday: 09:00–21:00
+
+The opening-hours post is visibly dated 19 October 2023. Record this source date and describe these as published hours pending current confirmation. This date is not evidence of the gym's founding date. Effective membership access is the intersection of the package access window and daily opening hours: Saturday access begins no earlier than 08:00, and Sunday access ends no later than 21:00. Day-session and tourist-pass access windows and holiday exceptions remain unspecified.
+
+Accepted screenshot sources supplied on 18 October 2026:
+- Screenshot 2026-10-18 010301.png: profile/contact/branding
+- Screenshot 2026-10-18 010312.png: package prices
+- Screenshot 2026-10-18 010411.png: opening hours
+
+Ignore Screenshot 2026-10-18 010333.png completely. Do not use its trainer identity, group description, timetable, photograph or affiliations. No actual trainer roster or class timetable has been verified for this prompt. Use clearly fictional trainers and classes if needed for demonstration features.
+
+Email, qualifications, real class schedules, detailed membership conditions and current operational spa services remain unverified. Do not fabricate official details. The Instagram username does not itself establish that fitnessfactory.mk is an operating official website. Do not use follower/post counts as permanent statistics. Supplied screenshots do not automatically establish permission to reuse their promotional photographs.
+
+Apply these supplied details consistently throughout all sections below. References to demo plans/prices mean simulated purchasing and any additional fictional offerings; the ten sourced packages above retain their published amounts and source status.
+
+Do not imply the student project is the gym's authorized official website unless authorization is supplied. Display a concise university demonstration notice. Use authentic branding and photographs only when supplied or appropriately licensed; otherwise use clearly representative assets. Do not invent partnerships or testimonials.
+
+==================================================
+1. PRIMARY OBJECTIVE
+==================================================
+
+Build a professional Fitness Factory platform combining:
+
+1. A premium public presentation website
+2. Gym facilities and equipment information
+3. Services and training programme directory
+4. Trainer/team profiles
+5. Class schedule and calendar
+6. Membership plans and day-pass information
+7. Capacity-aware class reservations and cancellations
+8. Simulated membership/pass checkout
+9. Registration, login and member dashboard
+10. Digital demo membership passes and booking confirmations
+11. News/blog and announcements
+12. Photo gallery
+13. About and business story using verified information
+14. Search and filtering
+15. Multilingual functionality
+16. Newsletter subscriptions and preferences
+17. Cookie consent/preferences
+18. Contact and FAQ systems
+19. Location and directions
+20. Protected administrative CMS
+21. Database-driven CRUD operations
+22. Validation and polished error handling
+23. Responsive mobile, tablet, desktop and large-screen layouts
+
+The application should feel like a coherent fitness business platform. Keep public visitor tasks simple; account and admin functionality should support them.
+
+==================================================
+2. TECHNOLOGY REQUIREMENTS
+==================================================
+
+Frontend: HTML5, CSS3 and vanilla JavaScript.
+Backend: PHP 8+ and MySQL/MariaDB.
+
+Use this stack unless a compelling technical or FCSE hosting constraint requires a documented change. Do not introduce React, Vue, Angular, Laravel or a Node.js application runtime unnecessarily.
+
+Use the FCSE RepoRun platform as the primary deployment target. Support Docker-based local development using compatible configuration; XAMPP/WAMP/LAMP may remain an optional alternative. Avoid assuming host shell access, mail transport or unrestricted database privileges.
+
+REPORUN DEPLOYMENT REQUIREMENTS
+
+The student supplied RepoRun Guide/Docs screenshots. They establish a single-host Docker Compose platform with one deployable stack per team, connected to a Git repository and configured branch. Catalog templates are starters, not a requirement to use WordPress. Retain the custom PHP + MariaDB application.
+
+Deliver a Dockerfile for the PHP application, docker-compose.yml and stack.yml at the repository locations RepoRun expects. Include .dockerignore and a secret-free environment/configuration reference. Use a PHP/Apache application service and a MariaDB service, with compatible pinned image versions and required PHP extensions. The database must not have an ingress endpoint.
+
+RepoRun builds images during deployment. Define explicit cpus and mem_limit values for services within the team's actual CPU/RAM quota. Do not assume the WordPress starter's 1 CPU/1 GB allocation is the team's available quota. Document resource requirements and how to adjust them without compromising application operation.
+
+RepoRun prohibits Compose settings ports, env_file, labels, restart and networks. It also prohibits absolute host paths, Docker socket mounts and privileged containers. Do not put these in the RepoRun deployment Compose file. If local host-port mapping is needed, isolate it in an optional local-only override that RepoRun does not load.
+
+Ingress is managed by stack.yml, not Compose host port mappings. The supplied minimal schema is:
+
+version: 1
+ingress:
+  - name: app
+    service: web
+    port: 80
+    primary: true
+    access:
+      type: public
+
+The service name must match the actual Compose application service and port must match its internal listener. Public is a documented access type; use it for the presentation endpoint if permitted by course instructions. Other documented types are cas, team and basic_auth. Omitted access defaults to cas; authenticated is not a valid current access type. Do not bypass university access policies. Keep application member/admin authentication and authorization independent of endpoint access. Record any course-required access change and how reviewers will reach the site.
+
+Use repository-relative persistent bind mounts under .stack-data/ for MariaDB data and uploaded images. Ensure directories and permissions are initialized appropriately. Keep mutable data out of the application image and out of Git. Do not rely on a normal source checkout path surviving reset/reclone. RepoRun preserves .stack-data/ on reset/reclone and preserves volumes when stopping; its Delete runtime data action destroys databases/uploads under .stack-data/. Document backup/restore and never use destructive runtime-data deletion as a routine deployment step.
+
+Configure secrets through RepoRun stack-level environment values and Compose environment interpolation. Do not commit credentials, real .env files or database contents. Environment names must match ^[A-Z_][A-Z0-9_]{0,127}$. Required missing references fail validation; defaults such as ${LOG_LEVEL:-info} are supported. Use a separate least-privileged application database account. Do not print secrets in logs or documentation.
+
+Provide a reliable first-run schema/seed procedure, database readiness handling and safe versioned migrations for subsequent deployments. Initialization must not erase persistent data or duplicate demo records on redeploy. Document that database initialization variables/scripts generally affect an empty data directory and are not a substitute for updates to an existing database.
+
+RepoRun Deploy/Redeploy fetches the configured branch, validates the repository and builds/starts services. Start/Wake uses the last trusted configuration without fetching Git or rebuilding. Idle stacks may sleep and wake on request; do not rely on a permanently running background scheduler for essential workflows. Document possible first-request startup delay.
+
+Run RepoRun Validate before deployment and fix reported issues. A successful deployment operation does not establish application health: the supplied documentation says an unhealthy container does not itself fail deployment in v1. Verify the live endpoint, database readiness, authentication, booking/checkout flows, static assets and uploads. Verify persistent data survives a normal redeploy. Record checks actually performed and any unavailable access; never claim a deployment succeeded without evidence.
+
+Document Git repository/branch connection, private-repository read access where needed, environment values, quotas, ingress access, validation, deployment, logs, backups and recovery. Do not invent undocumented stack.yml fields or claim all validation rules are known from the screenshots; confirm any additional fields against the available full documentation when implementing.
+
+Use PHP sessions, PDO prepared statements, password_hash(), password_verify(), reusable PHP components, modular JavaScript and organized CSS. No paid service dependencies. Document lightweight open-source libraries and their licenses.
+
+==================================================
+3. APPLICATION STRUCTURE
+==================================================
+
+Use reusable headers, navigation, footer, language selector, cookie banner, cards, buttons, modals, alerts, forms, pagination and breadcrumbs. Create specialized service, trainer, class, membership, booking and news components.
+
+Centralize database configuration and authentication/authorization helpers. Separate presentation, business logic, database access, reusable components and assets. Avoid large duplicated templates and use consistent names.
+
+Keep secrets outside version control. Support configurable application base URL, installation subdirectory, database credentials and environment mode.
+
+==================================================
+4. PUBLIC WEBSITE
+==================================================
+
+HOME
+- Strong hero introducing Fitness Factory Ohrid
+- Clear actions to explore memberships, view classes and find the gym
+- Business overview, facility highlights and equipment information
+- Featured services and trainers, with demo labels where needed
+- Upcoming classes, current announcements, gallery preview and newsletter
+- Verified social links only and comprehensive footer navigation
+
+ABOUT
+- Business overview, approach to training and visitor information
+- Verified business story and sourced equipment details
+- Clear separation of confirmed facts from demonstration content
+- No invented founding dates, awards, statistics or guarantees
+
+FACILITIES & EQUIPMENT
+- Directory of training areas and equipment categories
+- Individual detail pages or accessible sections for strength and cardio areas
+- Pilates/group-training and wellness areas only with accurate availability labels
+- Images, descriptions, equipment details and practical visitor information
+- Accessibility, changing facilities and amenities only when verified or explicitly marked as unconfirmed
+
+SERVICES / TRAINING PROGRAMMES
+- Searchable directory with filters by training type, experience level and format
+- Possible demo categories: strength training, cardio, functional training, personal training, group fitness, Pilates and wellness
+- Each service has a description, suitable audience, duration/format where relevant, related trainers, related classes and an inquiry or booking action
+- Never imply all example services are currently offered by the real gym
+
+CLASS SCHEDULE / CALENDAR
+- Upcoming and past class sessions
+- List and calendar views with date navigation
+- Search and filters for date, category, trainer, difficulty and availability
+- Display local start/end times, duration, room/area, capacity and booking status
+- Detail links and clear book/cancel actions
+- Gym schedules use the Europe/Skopje timezone, with consistent database handling
+
+CLASS DETAILS
+- Title, description, image, training type and difficulty
+- Date, time, duration, room and trainer
+- Equipment or preparation guidance, where appropriate
+- Capacity, remaining availability and booking/cancellation conditions
+- Related classes, favorites and reservation button
+- Clearly label demonstration sessions and policies
+
+TRAINERS / TEAM
+- Searchable directory with discipline filters
+- Detail pages with name, photograph, biography, specialties, languages and classes
+- Publish qualifications and real-person affiliations only when verified
+- Use explicitly fictional demo profiles when real staff information is unavailable
+- Do not use a real person's photograph for a fictional profile
+
+MEMBERSHIPS & PASSES
+- Compare demo membership plans and day passes
+- Clearly display currency, duration, access windows, included services and exclusions
+- Show whether class or wellness access is included
+- Provide details, FAQs and a demonstration checkout action
+- Use the ten sourced packages above and distinguish published prices pending confirmation from fictional demo terms
+
+NEWS / BLOG
+- Searchable, paginated listing with categories and publication dates
+- Article pages with title, author, image, content, related services/classes and sharing
+- Distinguish sample announcements from real business announcements
+- Avoid individualized medical advice and unsupported health promises
+
+GALLERY
+- Albums for facilities, equipment, training and wellness where applicable
+- Filters and accessible lightbox with keyboard navigation
+- Captions and descriptive alt text
+- Keep asset source/license records; identify representative photos accurately
+
+CONTACT / LOCATION
+- Verified contact information, opening hours and address when available
+- If unavailable, explain briefly and provide a working project inquiry form
+- Location/directions link using confirmed coordinates or the verified map destination
+- Form fields: name, email, inquiry subject and message
+- Validate and store submissions; do not claim email delivery without a configured transport
+- Do not invent parking, public transport or step-free access details
+
+FAQ
+- Expandable, accessible questions about memberships, passes, classes, cancellations, demo payments, beginner visits, facilities and accessibility inquiries
+- Distinguish actual business rules from demonstration policies
+
+==================================================
+5. CLASS BOOKING SYSTEM
+==================================================
+
+Implement:
+SCHEDULE → CLASS DETAILS → LOGIN IF NEEDED → REVIEW BOOKING → CONFIRMATION → MY BOOKINGS
+
+Users can view availability, reserve a place, view confirmations and cancel eligible bookings. Use statuses such as confirmed, cancelled, attended and no-show where appropriate.
+
+Classes reserve participant places, not theatre seats. Do not implement festival seating charts or VIP seat categories.
+
+Prevent duplicate active bookings, bookings for cancelled/past sessions and overbooking. Check eligibility and capacity server-side in a transaction with concurrency protection. Store cancellation rules explicitly and label sample policies as demo.
+
+Admin can cancel or reschedule sessions and display the resulting status to affected members. Do not claim notifications were sent unless delivery is implemented.
+
+==================================================
+6. SIMULATED MEMBERSHIP CHECKOUT
+==================================================
+
+Implement:
+PLAN/PASS → REVIEW ORDER → DEMO PAYMENT → CONFIRMATION → DIGITAL DEMO PASS
+
+This is a university demonstration. Do not connect to a real financial institution or accept real payments.
+
+Offer clearly labeled simulated card payment, simulated bank transfer and pay-at-reception demonstration methods. Never solicit real card numbers, CVVs, banking credentials or identity documents. Use predefined test scenarios to simulate success, failure and pending payment.
+
+Show processing, success, failure and pending states. Calculate prices and entitlements on the server. Make repeated submissions idempotent to prevent duplicate orders or memberships.
+
+Successful simulated payment may activate a demo membership. Pending transfer/reception orders must remain pending until explicitly confirmed in the demo admin workflow. No real gym access is granted.
+
+==================================================
+7. DIGITAL PASSES AND CONFIRMATIONS
+==================================================
+
+Provide MY MEMBERSHIP / MY PASSES / MY BOOKINGS.
+
+Digital demo passes show business/project name, member display name, plan, access period, status, order reference and unique pass identifier. Booking confirmations show class, date/time, trainer, room and booking reference.
+
+Offer a printable representation. If using QR codes, encode a functional project verification URL with an opaque token; do not use decorative fake QR codes. Verification reveals only minimal status information and grants no real-world access. Clearly mark every pass as DEMO.
+
+==================================================
+8. USER AUTHENTICATION
+==================================================
+
+Implement registration, login, logout, session management, password hashing/validation, protected pages and role-based authorization.
+
+Dashboard includes profile, memberships/passes, bookings, order history, favorites, newsletter preferences and account settings. Users can access only their own records. Provide useful success/error messages.
+
+Do not collect unnecessary health, medical, biometric or body-measurement data. This project does not require such information.
+
+==================================================
+9. FAVORITES
+==================================================
+
+Logged-in users can favorite services, trainers and class types. Provide a discoverable My Favorites page with add/remove actions, empty states and links to details. Enforce uniqueness and ownership server-side.
+
+==================================================
+10. SEARCH
+==================================================
+
+Provide global search across services, trainers, classes, facilities and news. Include results counts, categories, filters, pagination and useful no-results states. Optional autocomplete must be keyboard accessible. Search must respect publication status and current language.
+
+==================================================
+11. MULTILINGUAL SUPPORT
+==================================================
+
+Support Macedonian, English, Albanian, German, French and Italian. These six languages are the requested project scope, not an explicit six-language course requirement.
+
+Translate navigation, buttons, forms, validation, status messages, headings, footer, policies, static pages and core database content. Use translation tables and reusable translation helpers. Track missing translations and document fallback behavior.
+
+Language selection must work across public pages, checkout, account and admin interfaces. Preserve the current page when switching languages where possible. Persist preferences appropriately. Set HTML language attributes, use UTF-8 and format dates, numbers and currency consistently.
+
+==================================================
+12. COOKIE SYSTEM AND POLICIES
+==================================================
+
+Implement Accept all, Reject optional cookies and Manage preferences. Categories: necessary, preferences and analytics. Necessary session/security cookies remain available. Persist consent and allow later changes from the footer.
+
+Only offer optional categories tied to actual functionality; if analytics is not installed, state that it is unused. Do not load optional tracking before consent. External embedded maps/media require appropriate consent handling; a normal outbound map link is an alternative.
+
+Create Privacy Policy, Cookie Policy and Terms & Conditions describing the project's actual behavior, stored data, demo payments and demonstration bookings. Do not invent the gym's legal identity or claim reviewed official policies.
+
+==================================================
+13. NEWSLETTER
+==================================================
+
+Implement email validation, explicit subscription consent, success/error messages, duplicate handling and unsubscribe/preferences. Store subscriptions and allow admin viewing. Document whether sending is configured; do not pretend a delivery occurred.
+
+==================================================
+14. LOCATION AND DIRECTIONS
+==================================================
+
+Create a usable location section/page with a map destination, directions action and verified visitor information. Confirm the actual gym entrance before using precise pin placement.
+
+If an embedded map cannot be used, provide a clearly labeled location illustration plus a working external directions link. Do not present a decorative schematic as accurate geographic navigation. Do not add festival venues or multi-venue festival maps.
+
+==================================================
+15. EQUIPMENT BRANDS AND BUSINESS LINKS
+==================================================
+
+Use sourced equipment information where useful. Distinguish equipment brands from official partners or sponsors. Prosport supplying equipment does not establish a current sponsorship.
+
+Do not invent partner pages, sponsorship tiers, endorsements or brand affiliations. Add verified partner entries only if supplied, with name, description and working link. Keep equipment specifications and source records manageable through the CMS where appropriate.
+
+==================================================
+16. ADMIN PANEL
+==================================================
+
+Protect /admin with server-side administrator authorization on every route and action.
+
+DASHBOARD
+- Users, published services, trainers and upcoming class sessions
+- Active demo memberships, bookings and cancellations
+- Demo orders/payment statuses and clearly labeled simulated revenue
+- Contact inquiries, newsletter subscribers and news counts
+
+CONTENT MANAGEMENT
+- CRUD and publish/unpublish for services, facilities/equipment, trainers, news and gallery
+- Manage translations and image captions/alt text
+- Edit verified business contact details and FAQs
+
+SCHEDULE MANAGEMENT
+- Manage class types, individual sessions, trainers, rooms, dates, times and capacities
+- Cancel/reschedule sessions with visible member status updates
+- Prevent reducing capacity below existing confirmed reservations without an explicit resolution workflow
+
+MEMBERSHIP / ORDER MANAGEMENT
+- Manage plans, demo prices, access rules and availability
+- View orders, payment status, membership/pass records and booking details
+- Allow valid status transitions with audit records
+- Preserve historical order prices when plans change
+
+USER / INQUIRY / NEWSLETTER MANAGEMENT
+- View users and roles; activate/deactivate accounts
+- Read and update inquiry status
+- View subscription status without exposing data publicly
+
+Archive referenced records rather than deleting order/booking history. Use clear confirmations for destructive admin actions.
+
+==================================================
+17. DATABASE
+==================================================
+
+Design a normalized MySQL/MariaDB schema. Suggested tables:
+
+users, roles, services, service_translations, trainers, trainer_translations,
+trainer_services, facilities, facility_translations, equipment,
+class_types, class_type_translations, class_sessions, rooms, bookings,
+membership_plans, membership_plan_translations, plan_entitlements,
+memberships, passes, orders, order_items, demo_payments,
+favorite_services, favorite_trainers, favorite_class_types,
+news, news_translations, categories, gallery_albums, gallery_images,
+contact_messages, faqs, faq_translations, newsletter_subscribers,
+site_settings, content_sources, admin_audit_log.
+
+Modify this schema when justified. Use foreign keys, indexes, unique constraints and sensible status validation. Store money as fixed-point decimals, never floating point. Document timezone handling.
+
+Consent can be stored in a browser cookie; do not create a server-side cookie_preferences table without a clear need. Avoid duplicating sensitive data.
+
+Provide database/schema.sql and reproducible seed data. CREATE DATABASE must be optional for restricted hosting. Ensure bookings and checkout use appropriate transactions and concurrency controls.
+
+==================================================
+18. DEMO DATA
+==================================================
+
+Populate services, clearly fictional trainers, facilities, the ten sourced membership/pass packages above, past/upcoming fictional class sessions, sample articles, gallery albums, FAQs, demo users, orders and bookings. Seed the supplied phone, address, Instagram profile and published opening hours exactly, retaining their source status.
+
+Include bookable, full, cancelled and past sessions; active, pending and expired demo memberships; successful, failed and pending payment examples. Generate session dates relative to installation or document a simple reseeding procedure so the schedule remains demonstrable.
+
+Mark additional fictional prices, trainers, classes, policies and announcements clearly. Keep the sourced published package prices and research-backed factual descriptions separate from invented content. Do not invent testimonials, credentials, discounts or real-person endorsements. Do not seed real personal data.
+
+==================================================
+19. RESPONSIVE DESIGN
+==================================================
+
+Verify representative widths including 320, 375, 390, 430, 768, 1024, 1280, 1440 and 1920 pixels and large screens.
+
+Adapt navigation, cards, tables, forms, calendar, membership comparisons, checkout, dashboards, dialogs, typography and spacing. Use mobile list alternatives for dense schedules. Avoid horizontal page overflow and inaccessible hover-only controls.
+
+==================================================
+20. UI/UX DESIGN
+==================================================
+
+Create a confident, modern fitness identity with strong typography, clear hierarchy, spacious layouts and high-quality training imagery. Balance energy with readability and a welcoming tone for beginners.
+
+Use confirmed business branding when available. Otherwise document the visual identity as a proposed project design, not the gym's official branding. Do not infer official colours or logos from unrelated businesses named Fitness Factory.
+
+Create consistent typography, spacing, colours, borders, shadows, buttons, cards, forms and icons. Use subtle transitions, respect reduced-motion preferences and avoid excessive animations. Make memberships, schedule and directions easy to find.
+
+==================================================
+21. ACCESSIBILITY
+==================================================
+
+Use semantic HTML, logical headings, form labels, keyboard navigation, visible focus, useful alt text, sufficient contrast, readable sizes and appropriate ARIA. Include skip navigation, accessible error summaries and status announcements.
+
+Manage dialog focus and Escape behavior. Calendars require keyboard access and an equivalent list view. Do not communicate availability or membership status through colour alone. Respect reduced motion.
+
+==================================================
+22. SECURITY
+==================================================
+
+Use prepared statements, password hashing, input validation, contextual output escaping, server-side authorization and CSRF protection on state-changing requests. Never trust client validation alone.
+
+Regenerate sessions after login, configure secure cookie attributes for the deployment environment, prevent insecure direct record access and rate-limit authentication and public submissions reasonably. Never use GET for destructive changes.
+
+Validate uploaded images by type, size and actual content. Use generated filenames, prohibit executable uploads and restrict storage access. Protect configuration and logs. Do not expose raw database errors or credentials.
+
+Calculate checkout totals and class eligibility on the server. Never store payment-card data. Never store plaintext passwords. Keep seeded demo credentials limited to demonstration deployments.
+
+==================================================
+23. ERROR HANDLING
+==================================================
+
+Provide polished states for 404, unauthorized access, empty results/favorites/bookings/orders, full or cancelled classes, expired membership, invalid forms, failed login, duplicate registration/booking, failed demo payment, invalid pass and unavailable database.
+
+Use correct HTTP status codes where applicable. Preserve safe form inputs after validation errors. Log technical details privately and show useful recovery actions to visitors.
+
+==================================================
+24. SEO
+==================================================
+
+Use unique titles/descriptions, meaningful headings and URLs, canonical URLs where appropriate, descriptive image alt text, sitemap.xml and robots.txt.
+
+Keep account, checkout and admin pages out of search indexing while enforcing real authorization. Demo deployment should normally be noindex to avoid confusing visitors with the real business. Enable public indexing only when appropriate for the deployment.
+
+Structured data must reflect confirmed information only. Do not invent ratings, business hours, address details or official affiliations. Implement language alternates if practical.
+
+==================================================
+25. PERFORMANCE
+==================================================
+
+Optimize images, use responsive sizes and lazy loading below the fold, avoid unnecessary libraries and repeated queries, paginate large lists and index commonly filtered fields. Keep CSS/JavaScript modular and avoid layout shifts. Do not rely on third-party assets remaining available indefinitely.
+
+==================================================
+26. AUTOMATED EVALUATOR DISCOVERABILITY
+==================================================
+
+Every important feature must be implemented, accessible, linked, visibly identifiable, functional and populated appropriately.
+
+Use normal anchor navigation, descriptive labels and semantic controls. Provide comprehensive footer links. Do not create dead buttons, fake forms, fake language selectors or major Coming Soon pages. Authentication-protected features should remain protected and be testable through documented demo accounts.
+
+Demonstration payments and bookings must perform real local application state changes while remaining clearly distinguished from real transactions. Do not bypass security for a crawler or assume undocumented evaluator scoring rules.
+
+==================================================
+27. CONTENT QUALITY
+==================================================
+
+Write useful, distinct content about gym facilities, equipment, services, training formats, memberships, class preparation, FAQs and visitor information. Avoid lorem ipsum and repeated generic marketing paragraphs.
+
+Keep a content provenance record distinguishing research-backed facts, owner-supplied material, representative imagery and fictional demo content. Do not make guaranteed fitness outcomes or unsupported medical claims. Unverified availability must not read as an official promise.
+
+==================================================
+28. NAVIGATION
+==================================================
+
+Suggested main navigation:
+HOME | ABOUT | FACILITIES | SERVICES | CLASSES | TRAINERS | MEMBERSHIPS | NEWS | CONTACT
+
+Use dropdowns or secondary navigation to avoid overcrowding. Add gallery, FAQ, search, language selector, login/member dashboard and an appropriate membership action. Include breadcrumbs on deeper pages.
+
+Footer: business/project information, public sitemap, verified contact/social links, newsletter, language selector, policies, cookie settings and university demo notice.
+
+==================================================
+29. DEMO ACCOUNTS
+==================================================
+
+Provide documented administrator and normal member demo accounts in README.md. Hash their passwords in seed data. Do not prominently expose credentials on the public website. Explain how to change or remove demo accounts before any non-demo deployment.
+
+==================================================
+30. README / DOCUMENTATION
+==================================================
+
+Document project purpose, course assessment accurately, features, technologies, requirements, Docker local setup, optional XAMPP setup, database import/migrations, configuration, the RepoRun deployment procedure above, demo accounts, folder structure, routes and admin use. Include all deployment files, a secret-free environment variable reference, resource quotas, access policy, persistent storage, backup/restore, readiness checks and redeployment verification.
+
+Include content sources, asset licenses, demo-data boundaries, payment limitations, mail behavior, language fallback, timezone handling, testing instructions, known limitations and backup/reseed guidance. Never claim deployment succeeded without evidence.
+
+==================================================
+31. CODE QUALITY
+==================================================
+
+Keep code readable, modular, consistently formatted and maintainable. Comment non-obvious logic and avoid duplication. Do not build the entire application in one enormous PHP file. Keep important workflows easy to locate and inspect.
+
+==================================================
+32. TESTING
+==================================================
+
+Actually run available checks and document results; mental walkthroughs alone are insufficient. Report unavailable checks honestly.
+
+Verify:
+- Registration → login → dashboard → logout
+- Membership → review → simulated payment → order → demo pass
+- Failed/pending payment → correct order and entitlement state
+- Schedule → details → book → confirmation → My Bookings → cancel
+- Full/cancelled/past session → appropriate booking rejection
+- Two competing bookings for the final place → no overbooking
+- Repeated checkout submission → no duplicate activation
+- Search → filters → results → details
+- Language switch → translated pages/forms/messages → persisted selection
+- Favorites → add → list → remove
+- Admin → CRUD → publication → public content update
+- Admin session cancellation/rescheduling → member-visible update
+- News → listing → article
+- Contact → validation → stored submission → admin inquiry
+- Newsletter → subscribe → duplicate handling → unsubscribe
+- Cookies → reject/accept/manage → persistence and actual behavior
+- Account ownership, authorization, CSRF and upload restrictions
+- Keyboard access, mobile layouts, broken links and error states
+- RepoRun-compatible configuration, service resource limits and ingress access
+- Fresh database initialization and non-destructive subsequent migrations
+- Live application/database health after deployment, beyond deployment-operation status
+- Database records and uploaded images surviving a normal redeployment
+
+==================================================
+33. IMPLEMENTATION PROCESS
+==================================================
+
+First inspect the existing workspace and instructions. Preserve existing work. Do not dump thousands of lines without planning.
+
+Proceed through:
+PHASE 1: Architecture, feature specification and content-verification register.
+PHASE 2: Database schema, constraints and relationships.
+PHASE 3: Public/account/admin site map and user journeys.
+PHASE 4: Folder structure, configuration, Dockerfile, RepoRun Compose/stack files and persistent-storage plan.
+PHASE 5: UI/UX design system and responsive layouts.
+PHASE 6: Implementation in coherent working increments.
+PHASE 7: Executed tests and bug fixes.
+PHASE 8: Final requirements and content-provenance audit.
+
+When implementation is authorized, continue through the phases rather than stopping at a plan. If output limitations require batches, maintain consistency and explicitly track remaining work. Never silently omit required features.
+
+==================================================
+34. FINAL QUALITY AUDIT
+==================================================
+
+Audit every course requirement, public page, feature, form, button, navigation link, backend module, database relationship, language, representative viewport, authentication workflow, membership/booking workflow, policy and error state.
+
+Also audit confirmed facts versus demo content, source records, image licenses, business contact accuracy and absence of real payment collection.
+
+Mark items PASS, NEEDS FIX or NOT VERIFIED, with evidence. Fix failures and clearly report unresolved external verification or environment limitations. Do not mark unexecuted tests PASS or declare completion while major implementation requirements remain unfinished.
+
+==================================================
+35. FINAL EXPECTATION
+==================================================
+
+Deliver a polished, coherent Fitness Factory Ohrid presentation and member-service demonstration platform with working PHP/MySQL behavior.
+
+Prioritize:
+1. Functionality
+2. Completeness
+3. Clear navigation
+4. Professional UI/UX
+5. Responsiveness
+6. Multilingual support
+7. Database/backend quality
+8. Security
+9. Accessibility
+10. Automated-evaluator discoverability
+11. Accurate, responsibly sourced business content
+
+Every requested feature must work, every important interaction must be discoverable, and fictional operational data must be clearly identified. Actually implement the application when this prompt is used as an implementation request; do not merely describe possibilities.

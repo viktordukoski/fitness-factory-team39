@@ -1,0 +1,56 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    cpus: ${WEB_CPUS}
+    mem_limit: ${WEB_MEMORY}
+    environment:
+      APP_ENV: ${APP_ENV:-demo}
+      APP_URL: ${APP_URL}
+      APP_BASE_PATH: ${APP_BASE_PATH:-}
+      APP_KEY: ${APP_KEY}
+      APP_DEBUG: "false"
+      APP_INDEXABLE: ${APP_INDEXABLE:-false}
+      DEMO_MODE: ${DEMO_MODE:-true}
+      SEED_DEMO: ${SEED_DEMO:-true}
+      DEMO_ADMIN_PASSWORD: ${DEMO_ADMIN_PASSWORD:-}
+      SESSION_SECURE: ${SESSION_SECURE:-true}
+      TRUST_PROXY: ${TRUST_PROXY:-false}
+      DB_HOST: db
+      DB_PORT: "3306"
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      TZ: Europe/Skopje
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./.stack-data/uploads:/var/www/html/public/uploads
+    healthcheck:
+      test: ["CMD", "php", "/var/www/html/docker-health.php"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 90s
+
+  db:
+    image: mariadb:11.4.13-noble
+    cpus: ${DB_CPUS}
+    mem_limit: ${DB_MEMORY}
+    environment:
+      MARIADB_DATABASE: ${DB_NAME}
+      MARIADB_USER: ${DB_USER}
+      MARIADB_PASSWORD: ${DB_PASSWORD}
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      TZ: UTC
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci", "--innodb-buffer-pool-size=128M", "--max-connections=30"]
+    volumes:
+      - ./.stack-data/db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 60s

@@ -1,0 +1,34 @@
+{
+    "checks": [
+        {
+            "test": "Local origins retain the documented local default",
+            "status": "PASS"
+        },
+        {
+            "test": "Missing hosted secret fails before administrator insertion",
+            "status": "PASS"
+        },
+        {
+            "test": "Supplied password enforces 16–72 bytes, whitespace and NUL rejection",
+            "status": "PASS"
+        },
+        {
+            "test": "Fresh hosted administrator stores only the supplied password hash",
+            "status": "PASS"
+        },
+        {
+            "test": "Existing administrator is preserved on partial-seed retries",
+            "status": "PASS"
+        },
+        {
+            "test": "Completed demonstration seed does not reset credentials on redeploy",
+            "status": "PASS"
+        },
+        {
+            "test": "Compose passes the optional private initial secret and template is empty",
+            "status": "PASS"
+        }
+    ],
+    "passed": 7,
+    "total": 7
+}

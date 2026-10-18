@@ -1,0 +1,10 @@
+.env
+.env.*
+!.env.example
+.stack-data/
+backups/
+*.log
+public/uploads/*
+!public/uploads/.gitkeep
+tests/artifacts/
+.DS_Store

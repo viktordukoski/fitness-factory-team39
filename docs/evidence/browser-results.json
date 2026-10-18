@@ -1,0 +1,46 @@
+{
+  "checks": [
+    {
+      "test": "Homepage assets render",
+      "status": "PASS"
+    },
+    {
+      "test": "Reject optional cookies; no language cookie before consent",
+      "status": "PASS"
+    },
+    {
+      "test": "Manage preferences, language persistence and Escape",
+      "status": "PASS"
+    },
+    {
+      "test": "Nine representative widths without horizontal page overflow",
+      "status": "PASS"
+    },
+    {
+      "test": "Mobile navigation can be opened from keyboard",
+      "status": "PASS"
+    },
+    {
+      "test": "Calendar toggle and keyboard-accessible event links",
+      "status": "PASS"
+    },
+    {
+      "test": "Gallery lightbox opens and closes with Escape",
+      "status": "PASS"
+    },
+    {
+      "test": "Login and account screens at mobile and desktop widths",
+      "status": "PASS"
+    },
+    {
+      "test": "Administration and image upload restrictions",
+      "status": "PASS"
+    },
+    {
+      "test": "No JavaScript runtime exceptions",
+      "status": "PASS"
+    }
+  ],
+  "passed": 10,
+  "total": 10
+}

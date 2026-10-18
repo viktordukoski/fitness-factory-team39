@@ -1,0 +1,7 @@
+# Optional local override. Never add this file to RepoRun's loaded Compose files.
+services:
+  web:
+    ports:
+      - "127.0.0.1:${LOCAL_PORT:-8080}:80"
+    environment:
+      SESSION_SECURE: "false"

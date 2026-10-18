@@ -1,0 +1,13 @@
+.git
+.env
+.env.*
+!.env.example
+.stack-data
+backups
+tests
+docs
+*.log
+*.sql.gz
+node_modules
+public/uploads/*
+!public/uploads/.gitkeep

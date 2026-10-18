@@ -1,0 +1,4 @@
+{
+    "test": "Unavailable database returns safe 503 recovery page",
+    "status": "PASS"
+}

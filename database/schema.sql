@@ -1,0 +1,132 @@
+-- MariaDB 11.4 / MySQL 8.0. Select an existing database before importing.
+-- All timestamps are UTC. Money is exact DECIMAL MKD.
+CREATE TABLE IF NOT EXISTS schema_migrations (version VARCHAR(64) PRIMARY KEY, applied_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS roles (id SMALLINT UNSIGNED PRIMARY KEY, name VARCHAR(30) NOT NULL UNIQUE) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS users (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, role_id SMALLINT UNSIGNED NOT NULL DEFAULT 2,
+ name VARCHAR(100) NOT NULL, email VARCHAR(190) NOT NULL UNIQUE, password_hash VARCHAR(255) NOT NULL,
+ language CHAR(2) NOT NULL DEFAULT 'en', active TINYINT(1) NOT NULL DEFAULT 1, is_demo TINYINT(1) NOT NULL DEFAULT 0,
+ created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+ FOREIGN KEY(role_id) REFERENCES roles(id)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS content_sources (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, source_key VARCHAR(80) NOT NULL UNIQUE, title VARCHAR(200) NOT NULL,
+ url VARCHAR(1000) NULL, source_date DATE NULL, received_date DATE NULL, verification_status VARCHAR(80) NOT NULL,
+ notes TEXT NOT NULL
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS content (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+ kind ENUM('service','facility','trainer','class_type','news','faq','gallery') NOT NULL,
+ slug VARCHAR(160) NOT NULL UNIQUE, category VARCHAR(80) NOT NULL DEFAULT '', level VARCHAR(50) NOT NULL DEFAULT '',
+ format VARCHAR(60) NOT NULL DEFAULT '', image VARCHAR(500) NOT NULL DEFAULT '',
+ is_demo TINYINT(1) NOT NULL DEFAULT 1, published TINYINT(1) NOT NULL DEFAULT 1, archived TINYINT(1) NOT NULL DEFAULT 0,
+ source_id BIGINT UNSIGNED NULL, author VARCHAR(100) NOT NULL DEFAULT 'Project team', metadata JSON NULL,
+ published_at DATETIME NULL, created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+ FOREIGN KEY(source_id) REFERENCES content_sources(id), INDEX content_public(kind,published,archived), INDEX content_category(category)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS content_translations (
+ content_id BIGINT UNSIGNED NOT NULL, language CHAR(2) NOT NULL, title VARCHAR(200) NOT NULL,
+ summary TEXT NOT NULL, body MEDIUMTEXT NOT NULL, alt VARCHAR(300) NOT NULL DEFAULT '',
+ PRIMARY KEY(content_id,language), FOREIGN KEY(content_id) REFERENCES content(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS trainer_services (
+ trainer_id BIGINT UNSIGNED NOT NULL, service_id BIGINT UNSIGNED NOT NULL, PRIMARY KEY(trainer_id,service_id),
+ FOREIGN KEY(trainer_id) REFERENCES content(id), FOREIGN KEY(service_id) REFERENCES content(id)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS rooms (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, name VARCHAR(100) NOT NULL UNIQUE,
+ capacity SMALLINT UNSIGNED NOT NULL DEFAULT 20, active TINYINT(1) NOT NULL DEFAULT 1
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS class_sessions (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, seed_key VARCHAR(100) NULL UNIQUE,
+ class_type_id BIGINT UNSIGNED NOT NULL, trainer_id BIGINT UNSIGNED NULL, room_id BIGINT UNSIGNED NOT NULL,
+ starts_at DATETIME NOT NULL, ends_at DATETIME NOT NULL, capacity SMALLINT UNSIGNED NOT NULL,
+ status ENUM('scheduled','cancelled','completed') NOT NULL DEFAULT 'scheduled',
+ cancellation_minutes SMALLINT UNSIGNED NOT NULL DEFAULT 60, requires_membership TINYINT(1) NOT NULL DEFAULT 1,
+ change_note VARCHAR(1000) NOT NULL DEFAULT '', original_starts_at DATETIME NULL,
+ created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+ FOREIGN KEY(class_type_id) REFERENCES content(id), FOREIGN KEY(trainer_id) REFERENCES content(id), FOREIGN KEY(room_id) REFERENCES rooms(id),
+ INDEX class_dates(starts_at,status), CHECK(ends_at>starts_at), CHECK(capacity>0)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS membership_plans (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, slug VARCHAR(100) NOT NULL UNIQUE,
+ kind ENUM('membership','pass') NOT NULL DEFAULT 'membership', duration_days SMALLINT UNSIGNED NOT NULL,
+ price DECIMAL(10,2) NOT NULL, currency CHAR(3) NOT NULL DEFAULT 'MKD', access_start TIME NULL, access_end TIME NULL,
+ active TINYINT(1) NOT NULL DEFAULT 1, source_id BIGINT UNSIGNED NULL,
+ source_status VARCHAR(100) NOT NULL DEFAULT 'published_pending_confirmation',
+ created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY(source_id) REFERENCES content_sources(id),
+ CHECK(price>=0), CHECK(duration_days>0)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS membership_plan_translations (
+ plan_id BIGINT UNSIGNED NOT NULL, language CHAR(2) NOT NULL, title VARCHAR(160) NOT NULL, description TEXT NOT NULL,
+ PRIMARY KEY(plan_id,language), FOREIGN KEY(plan_id) REFERENCES membership_plans(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS orders (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, reference VARCHAR(32) NOT NULL UNIQUE, user_id BIGINT UNSIGNED NOT NULL,
+ idempotency_key VARCHAR(100) NOT NULL, total DECIMAL(10,2) NOT NULL, currency CHAR(3) NOT NULL DEFAULT 'MKD',
+ status ENUM('pending','paid','failed','cancelled') NOT NULL, method ENUM('card','bank','reception') NOT NULL,
+ created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+ FOREIGN KEY(user_id) REFERENCES users(id), UNIQUE KEY order_idempotency(user_id,idempotency_key), INDEX orders_user(user_id,created_at)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS order_items (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, order_id BIGINT UNSIGNED NOT NULL UNIQUE, plan_id BIGINT UNSIGNED NOT NULL,
+ title_snapshot VARCHAR(200) NOT NULL, price_snapshot DECIMAL(10,2) NOT NULL, duration_days SMALLINT UNSIGNED NOT NULL,
+ kind ENUM('membership','pass') NOT NULL, access_start TIME NULL, access_end TIME NULL,
+ FOREIGN KEY(order_id) REFERENCES orders(id), FOREIGN KEY(plan_id) REFERENCES membership_plans(id)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS demo_payments (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, order_id BIGINT UNSIGNED NOT NULL UNIQUE,
+ status ENUM('pending','success','failed','cancelled') NOT NULL, scenario ENUM('success','failure','pending') NOT NULL,
+ confirmed_by BIGINT UNSIGNED NULL, confirmed_at DATETIME NULL, created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ FOREIGN KEY(order_id) REFERENCES orders(id), FOREIGN KEY(confirmed_by) REFERENCES users(id)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS memberships (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, user_id BIGINT UNSIGNED NOT NULL, order_id BIGINT UNSIGNED NOT NULL UNIQUE,
+ plan_id BIGINT UNSIGNED NOT NULL, status ENUM('pending','active','expired','cancelled') NOT NULL,
+ starts_at DATETIME NULL, ends_at DATETIME NULL, created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ FOREIGN KEY(user_id) REFERENCES users(id), FOREIGN KEY(order_id) REFERENCES orders(id), FOREIGN KEY(plan_id) REFERENCES membership_plans(id),
+ INDEX memberships_eligible(user_id,status,starts_at,ends_at)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS passes (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, membership_id BIGINT UNSIGNED NOT NULL UNIQUE,
+ token CHAR(64) NOT NULL UNIQUE, identifier VARCHAR(32) NOT NULL UNIQUE, created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ FOREIGN KEY(membership_id) REFERENCES memberships(id)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS bookings (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, reference VARCHAR(32) NOT NULL UNIQUE,
+ user_id BIGINT UNSIGNED NOT NULL, session_id BIGINT UNSIGNED NOT NULL,
+ status ENUM('confirmed','cancelled','attended','no_show') NOT NULL DEFAULT 'confirmed',
+ cancellation_reason VARCHAR(200) NOT NULL DEFAULT '', created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+ FOREIGN KEY(user_id) REFERENCES users(id), FOREIGN KEY(session_id) REFERENCES class_sessions(id),
+ UNIQUE KEY one_booking(user_id,session_id), INDEX booking_capacity(session_id,status), INDEX booking_user(user_id,status)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS favorites (
+ user_id BIGINT UNSIGNED NOT NULL, content_id BIGINT UNSIGNED NOT NULL, created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ PRIMARY KEY(user_id,content_id), FOREIGN KEY(user_id) REFERENCES users(id), FOREIGN KEY(content_id) REFERENCES content(id)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS contact_messages (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, name VARCHAR(100) NOT NULL, email VARCHAR(190) NOT NULL,
+ subject VARCHAR(160) NOT NULL, message TEXT NOT NULL, status ENUM('new','read','resolved') NOT NULL DEFAULT 'new',
+ created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS newsletter_subscribers (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, email VARCHAR(190) NOT NULL UNIQUE, token CHAR(64) NOT NULL UNIQUE,
+ status ENUM('subscribed','unsubscribed') NOT NULL DEFAULT 'subscribed', consent_at DATETIME NOT NULL,
+ consent_version VARCHAR(30) NOT NULL DEFAULT 'project-v1', unsubscribed_at DATETIME NULL, created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS site_settings (
+ setting_key VARCHAR(100) PRIMARY KEY, value TEXT NOT NULL, source_id BIGINT UNSIGNED NULL,
+ updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+ FOREIGN KEY(source_id) REFERENCES content_sources(id)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS admin_audit_log (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, admin_id BIGINT UNSIGNED NOT NULL, action VARCHAR(80) NOT NULL,
+ entity_type VARCHAR(80) NOT NULL, entity_id VARCHAR(100) NOT NULL, details JSON NULL,
+ created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY(admin_id) REFERENCES users(id), INDEX audit_created(created_at)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS rate_limits (
+ bucket CHAR(64) PRIMARY KEY, hits INT UNSIGNED NOT NULL DEFAULT 1, window_start DATETIME NOT NULL,
+ INDEX limit_cleanup(window_start)
+) ENGINE=InnoDB;

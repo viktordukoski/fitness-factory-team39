@@ -1,0 +1,30 @@
+{
+  "checks": [
+    {
+      "test": "Malformed calendar date returns HTTP 400",
+      "status": "PASS"
+    },
+    {
+      "test": "Impossible calendar date returns HTTP 400",
+      "status": "PASS"
+    },
+    {
+      "test": "Oversized search returns HTTP 400",
+      "status": "PASS"
+    },
+    {
+      "test": "Unknown verification token returns HTTP 404",
+      "status": "PASS"
+    },
+    {
+      "test": "Seeded news has a working second page",
+      "status": "PASS"
+    },
+    {
+      "test": "Unique metadata, canonical and six language alternates",
+      "status": "PASS"
+    }
+  ],
+  "passed": 6,
+  "total": 6
+}

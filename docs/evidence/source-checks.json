@@ -1,0 +1,17 @@
+{
+  "php_syntax": {
+    "status": "PASS",
+    "files": 51
+  },
+  "javascript_syntax": {
+    "status": "PASS",
+    "file": "public/assets/app.js"
+  },
+  "svg_xml": {
+    "status": "PASS",
+    "files": 13
+  },
+  "docker_entrypoint_lf_shebang": "PASS",
+  "specification_matches_supplied_file": "PASS",
+  "all_recorded_json_evidence_free_of_unresolved_failures": "PASS"
+}
