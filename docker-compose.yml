@@ -3,8 +3,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    cpus: ${WEB_CPUS}
-    mem_limit: ${WEB_MEMORY}
+    cpus: 0.25
+    mem_limit: 512m
     environment:
       APP_ENV: ${APP_ENV:-demo}
       APP_URL: ${APP_URL}
@@ -37,8 +37,8 @@ services:
 
   db:
     image: mariadb:11.4.13-noble
-    cpus: ${DB_CPUS}
-    mem_limit: ${DB_MEMORY}
+    cpus: 0.25
+    mem_limit: 512m
     environment:
       MARIADB_DATABASE: ${DB_NAME}
       MARIADB_USER: ${DB_USER}

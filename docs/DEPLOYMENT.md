@@ -1,10 +1,12 @@
 # Local and RepoRun operations
 
-Prepared on 18 October 2026. **The user has authorized a GitHub source push; deployment remains paused.** The private GitHub repository is [viktordukoski/fitness-factory-team39](https://github.com/viktordukoski/fitness-factory-team39), with branch `main` and repository root `/`. RepoRun Team 39's repository field has been set, but repository access keys, environment values, Validate and deployment have not been completed. No live website or remote persistence result is claimed.
+Updated on 18 October 2026. **The user resumed RepoRun setup and validation; deployment remains paused.** The private GitHub repository is [viktordukoski/fitness-factory-team39](https://github.com/viktordukoski/fitness-factory-team39), with branch `main` and repository root `/`. Its approved read-only RepoRun deploy key is installed. The first platform validation fetched the repository successfully, then reported interpolated resource fields and missing application environment values. Standard settings have been saved; private values require operator entry. The resource correction below requires another platform validation. No live website or remote persistence result is claimed.
 
-Follow [UPLOAD.md](UPLOAD.md) for future manual source updates, and ask to resume RepoRun setup when ready. Uploading source does not itself deploy the website. The local checks in [TESTING.md](TESTING.md) do not verify the Linux Docker build, RepoRun validation or a working public endpoint.
+Follow [UPLOAD.md](UPLOAD.md) for future manual source updates. Uploading source does not itself deploy the website; no automatic deployment webhook is enabled. The local checks in [TESTING.md](TESTING.md) do not verify the Linux Docker build or a working public endpoint. The first platform validation operation was `op_01M587SMHJEEASFH4VKSDKQPCM`; its reported errors are not a successful validation.
 
-The signed-in workspace page shows a **500m (0.5 CPU) workspace ceiling**. Team 39 shows no explicit CPU, memory or disk override. The proposed first deployment allocation is `WEB_CPUS=0.25`, `DB_CPUS=0.25`, `WEB_MEMORY=512m` and `DB_MEMORY=512m`; these values have not been entered. Memory/disk acceptance and runtime sufficiency still require platform validation and live checks. These are proposed allocations, not a guarantee of capacity.
+`APP_URL` must be the actual HTTPS endpoint. Before deployment, Team 39's endpoint table is empty. RepoRun's Guide describes a primary hostname of `https://<team-slug>--<workspace-slug>.<base-domain>`, but did not provide this installation's base domain. Confirm that domain or the exact generated endpoint before setting `APP_URL`; do not use a guessed address or localhost to bypass validation.
+
+The signed-in workspace page shows a **500m (0.5 CPU) workspace ceiling**. Team 39 shows no explicit CPU, memory or disk override. The hosted Compose file sets literal limits of `cpus: 0.25` and `mem_limit: 512m` on each service, totaling 0.5 CPU / 1 GiB. RepoRun's validator rejected interpolated resource fields even when their environment values were present, so hosted limits must be edited in `docker-compose.yml`. Memory/disk acceptance and runtime sufficiency still require platform validation and live checks. These configured allocations are not a guarantee of capacity.
 
 ## Verified platform reference
 
@@ -37,8 +39,8 @@ Use stack-level settings in RepoRun. `.env.example` is a secret-free reference a
 | `TRUST_PROXY` | Reserved, default `false`; currently no proxy headers are trusted |
 | `DB_NAME`, `DB_USER` | Dedicated database and application account; avoid root as the app user |
 | `DB_PASSWORD`, `DB_ROOT_PASSWORD` | Different strong secrets; existing database users require explicit password rotation |
-| `WEB_CPUS`, `DB_CPUS` | Required CPU limits approved within the actual team quota |
-| `WEB_MEMORY`, `DB_MEMORY` | Required memory limits approved within the actual team quota |
+| `WEB_CPUS`, `DB_CPUS` | Local override only; hosted CPU limits are literal values in `docker-compose.yml` |
+| `WEB_MEMORY`, `DB_MEMORY` | Local override only; hosted memory limits are literal values in `docker-compose.yml` |
 | `LOCAL_PORT` | Local override only; default 8080 |
 
 Generate a secret locally with PHP: `php -r "echo bin2hex(random_bytes(32)), PHP_EOL;"`; copy the result into the secure environment setting, never a public document. Keep a private recovery copy of environment values. No mail credentials or payment gateway is required; outbound email and real payments are not implemented.
@@ -47,7 +49,7 @@ The hosted administrator email remains `admin@demo.test`, but its initial passwo
 
 ## Resources: observed ceiling and remaining checks
 
-The observed workspace CPU ceiling is 0.5 CPU, so the hosted allocation splits 0.25 CPU to each service. No explicit Team 39 memory/disk override is displayed. Catalog examples are not quota evidence. The local example's total 1 CPU / 1 GiB is a local planning allocation only; it must not be copied as the hosted CPU allocation. Compose deliberately has no resource defaults: RepoRun must receive all four values. Allow room for Apache/PHP workers, OPcache, MariaDB's configured 128 MiB buffer pool, connections and OS overhead. Worker count is limited to four; PHP per-request memory is 96 MiB, not reserved allocation. MariaDB allows 30 connections. Test at the accepted limits and review memory failures before reducing them. If the assigned quota cannot sustain the stack, reduce Apache worker count and DB limits with tests or ask the course administrator for an appropriate quota. Do not silently claim compatibility with a 64 MiB static template.
+The observed workspace CPU ceiling is 0.5 CPU, so `docker-compose.yml` assigns a literal 0.25 CPU and 512 MiB to each service. RepoRun validation returned `compose.service.cpus_invalid` and `compose.service.mem_limit_invalid` for interpolated limits; supplying `WEB_CPUS`, `DB_CPUS`, `WEB_MEMORY` and `DB_MEMORY` in stack settings did not resolve those errors. Those variables now affect only `compose.local.yml`, whose defaults total 1 CPU / 1 GiB for local use. Do not load that override in RepoRun. No explicit Team 39 memory/disk override is displayed, and catalog examples are not quota evidence. Allow room for Apache/PHP workers, OPcache, MariaDB's configured 128 MiB buffer pool, connections and OS overhead. Worker count is limited to four; PHP per-request memory is 96 MiB, not reserved allocation. MariaDB allows 30 connections. Test at the accepted limits and review memory failures before reducing them. If the assigned quota cannot sustain the stack, reduce Apache worker count and DB limits with tests or ask the course administrator for an appropriate quota. Do not silently claim compatibility with a 64 MiB static template.
 
 ## Local Docker procedure
 
@@ -70,7 +72,7 @@ Persistent paths are `./.stack-data/db:/var/lib/mysql` and `./.stack-data/upload
 ## RepoRun procedure after the user asks to resume
 
 1. Confirm the course access policy, actual team quota, repository URL, branch, reviewer access and authorization to deploy. Configure private repository read access using the supported deploy key or read-only token workflow.
-2. Connect the deployable repository root and branch in the team's stack. Enter environment values and actual limits. Confirm public ingress is allowed or change `stack.yml` to an accepted required policy.
+2. Connect the deployable repository root and branch in the team's stack. Enter application/database environment values, and confirm that the literal limits in `docker-compose.yml` fit the assigned quota. Confirm public ingress is allowed or change `stack.yml` to an accepted required policy.
 3. Run **Validate** without deployment; fix every reported issue and record the result. Source inspection here is not RepoRun validation.
 4. After explicit user authorization, choose Deploy/Redeploy. It fetches the configured branch and builds/starts services. Start/Wake uses the last trusted deployed configuration and does not fetch changes or rebuild.
 5. Check database and web health/logs; a successful deployment operation can coexist with an unhealthy container. Test the live health endpoint, static assets, registration/login, member ownership, booking, simulated checkout, upload and public/private ingress. Keep secrets out of screenshots and shared logs.
