@@ -1,5 +1,11 @@
 # Executed verification - 18 October 2026
 
+## RepoRun setup and validation — 18 October 2026
+
+The user authorized setup and validation while keeping deployment paused. GitHub's read-only deploy key is installed, repository fetch works, and the four private environment values were entered by the user. YAML parsing, resource arithmetic and whitespace checks passed for the revised Compose files. The workspace UI reports 500m CPU, 1000 MB memory and 2000 MB disk; hosted limits now total 0.5 CPU / 896 MiB (939,524,096 bytes).
+
+Actual platform runs identified and resolved interpolated resource-field errors and then a memory-quota error. The latest [validation operation](https://reporun.finki.net.mk/operations/op_01M588JK6P1EEXX4X35N3EH7PH) on application commit `e56b2f63b5094eaa52ac2da0bbb246e9a55630cb` reports **only missing `APP_URL`**. Overall validation remains **blocked**, not passed. The exact endpoint base domain is not displayed before deployment and has not been confirmed. No Deploy, Redeploy, Start or Wake action was performed; Linux image build, live health and persistence checks remain unexecuted.
+
 ## Café gallery replacement — 18 October 2026
 
 The selected fourth gallery image now uses the user's unchanged café photograph. **9/9 targeted browser views PASS:** 320/714/1440 px, all six locales, album filtering, image loading, matching lightbox source/alt, full-image containment and unchanged other gallery photos. No horizontal overflow or browser exceptions were found. Both changed PHP templates passed syntax checks. See [browser evidence](evidence/cafe-gallery.json), [original-byte hash](evidence/cafe-asset.json) and the visually inspected [gallery card](screenshots/cafe-gallery.png). No database migration or deployment is involved.

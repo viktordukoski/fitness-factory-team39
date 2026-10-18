@@ -1,5 +1,7 @@
 # Final requirements audit
 
+Latest hosting update — **setup in progress, deployment paused, 18 October 2026**: the approved GitHub read-only deploy key and private environment values are configured. Actual RepoRun validation drove resource corrections now pushed to the repository; resource syntax and quota errors are cleared. The remaining platform validation issue is `APP_URL`, because the exact endpoint base domain has not been confirmed. See [DEPLOYMENT.md](DEPLOYMENT.md) and [TESTING.md](TESTING.md). No live deployment, container health or remote persistence result is claimed.
+
 Latest gallery comment — **complete, 18 October 2026**: the fourth gallery image uses the supplied café photograph, with matching localized alt text and enlarged view. The existing layout, caption, other gallery images and custom uploads remain intact. [Nine targeted browser views passed](evidence/cafe-gallery.json). The source follows the authorized GitHub update workflow; RepoRun deployment remains paused.
 
 ## Later browser-comment update — 18 October 2026
