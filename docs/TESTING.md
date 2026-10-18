@@ -1,10 +1,22 @@
 # Executed verification - 18 October 2026
 
+## Build/startup retry checks — 18 October 2026
+
+The user authorized trying separate Docker build steps and more useful database-startup diagnostics. The changed PHP script passed syntax checking. **14/14 startup control-flow checks passed** using `tests/wait_for_db.py`: required settings, readiness, transient recovery, deduplicated/changing numeric errors, early exit for 1044/1045/1049, retry exhaustion and absence of secret/raw-exception output. These tests execute the script body in a temporary namespace with controlled PDO/exception/sleep substitutes; they do not prove a real database connection or Docker execution. See [startup evidence](evidence/wait-for-db.json).
+
+**16/16 static deployment checks passed**, including the observed 0.5 CPU / 1000 MB ceilings. The test's obsolete requirement for resource interpolation was corrected to match the literal limits already accepted by RepoRun; no resource allocation changed. See [configuration evidence](evidence/reporun-retry-config.json). The Dockerfile keeps the same base, dependencies, extensions and runtime configuration, but gives completed installation/compilation steps separate cache entries. Cache reuse and the original failure cause remain unverified. Deployment results for this experimental change must be recorded separately from the previous failed attempts below.
+
+## RepoRun deployment — BLOCKED, 18 October 2026
+
+The user authorized deployment after successful validation, revoking the earlier pause. Two actual Deploy operations failed: [op_01M58A6TQ81Y1QQSPJJXCATBJ3](https://reporun.finki.net.mk/operations/op_01M58A6TQ81Y1QQSPJJXCATBJ3), 22:10–22:13, and [op_01M58AF5S9PCAZYB05DDSJ5XVS](https://reporun.finki.net.mk/operations/op_01M58AF5S9PCAZYB05DDSJ5XVS), 22:15–22:18, Europe/Skopje. Both report `deploy.error`: `Stack deploy failed.` The stack remains **Failed**, validation **Valid**, with **0 live endpoints**.
+
+The only exposed raw log was `git-sync-reset.log` (77 bytes): `HEAD is now at 63091f1 Record successful RepoRun validation with Team 39 URL`. No build or container logs were exposed. The cause is undetermined; neither a timeout nor an application or platform fault is established. A RepoRun administrator must inspect the server-side worker/build error using those operation IDs. Live smoke checks, actual endpoint matching and remote persistence checks could not run. See [deployment evidence](evidence/reporun-deployment.json) and the [blocked deployment screenshot](screenshots/reporun-deployment-blocked.png). Earlier local test results below retain their original scope.
+
 ## RepoRun setup and validation — 18 October 2026
 
-The user authorized setup and validation while keeping deployment paused. GitHub's read-only deploy key is installed, repository fetch works, and the four private environment values were entered by the user. YAML parsing, resource arithmetic and whitespace checks passed for the revised Compose files. The workspace UI reports 500m CPU, 1000 MB memory and 2000 MB disk; hosted limits now total 0.5 CPU / 896 MiB (939,524,096 bytes).
+At this earlier stage, the user authorized setup and validation while keeping deployment paused; that pause was later revoked for the deployment attempts above. GitHub's read-only deploy key is installed, repository fetch works, and the four private environment values were entered by the user. YAML parsing, resource arithmetic and whitespace checks passed for the revised Compose files. The workspace UI reports 500m CPU, 1000 MB memory and 2000 MB disk; hosted limits now total 0.5 CPU / 896 MiB (939,524,096 bytes).
 
-Actual platform runs identified and resolved interpolated resource-field errors and then a memory-quota error. After the user supplied the hostname pattern, `APP_URL` was saved as `https://team-39--delovna2526.reporun.finki.net.mk`. Platform validation **PASS**: [operation op_01M589RGR4Z2Q1YQET8F161BRW](https://reporun.finki.net.mk/operations/op_01M589RGR4Z2Q1YQET8F161BRW) checked repository commit `9e10b8b113867dc2efdf154f22401e2a5c60e490` and succeeded at 22:03 Europe/Skopje on 18 October 2026. Later documentation-only changes do not change the validated configuration. No Deploy, Redeploy, Start or Wake action was performed; Linux image build, generated-endpoint matching, live health and persistence checks remain unexecuted.
+Actual platform runs identified and resolved interpolated resource-field errors and then a memory-quota error. After the user supplied the hostname pattern, `APP_URL` was saved as `https://team-39--delovna2526.reporun.finki.net.mk`. Platform validation **PASS**: [operation op_01M589RGR4Z2Q1YQET8F161BRW](https://reporun.finki.net.mk/operations/op_01M589RGR4Z2Q1YQET8F161BRW) checked repository commit `9e10b8b113867dc2efdf154f22401e2a5c60e490` and succeeded at 22:03 Europe/Skopje on 18 October 2026. Later documentation-only changes do not change the validated configuration. Validation remains Valid after the failed deployment attempts above. A successful Linux image build, generated-endpoint matching, live health and persistence have not been verified.
 
 ## Café gallery replacement — 18 October 2026
 
@@ -51,11 +63,11 @@ These checks ran **after** the user's wording revision. The public pages now use
 
 Current [desktop](screenshots/copy-home-desktop.png) and [mobile](screenshots/copy-home-mobile.png) screenshots were visually inspected. The migration initially exposed a MariaDB collation mismatch; explicit binary comparisons corrected it, and the recorded migration and fresh-install checks passed afterward. Internal keys and private provenance remain for compatibility and traceability. Prices and opening hours did not change. Stored pass identifiers remain intact; member pages use a stable FF reference based on the pass record ID.
 
-This is local verification. Docker, RepoRun Validate, hosted operation, resource behavior and live persistence remain unverified. Earlier reports below retain their original scope and describe the version before this copy revision.
+This was local verification. At that stage Docker, RepoRun Validate, hosted operation, resource behavior and live persistence were unverified. The later platform validation and failed deployment attempts are recorded above. Earlier reports below retain their original scope and describe the version before this copy revision.
 
 ## Earlier pre-upload recheck
 
-The final pre-upload recheck ran locally against a fresh isolated database. **No source upload or deployment was performed during this recheck.** The user has paused publication and will upload the reviewed files themselves. PASS means the stated check actually ran and met its assertions; it does not establish blanket coverage, formal certification or hosted operation.
+The final pre-upload recheck ran locally against a fresh isolated database. **No source upload or deployment was performed during this recheck.** At that time the user had paused publication and intended to upload the reviewed files themselves; later source uploads and deployment authorization superseded that pause. PASS means the stated check actually ran and met its assertions; it does not establish blanket coverage, formal certification or hosted operation.
 
 ## Environment and evidence dates
 
@@ -133,7 +145,7 @@ The final pre-upload review additionally corrected:
 ## Explicitly NOT VERIFIED
 
 - Docker image build/start, the exact target PHP/MariaDB pair, Apache rules in that image, Linux mount ownership, and behavior under accepted CPU/memory limits.
-- RepoRun private-repository read access, required key/environment configuration, memory/disk acceptance, course-required ingress policy, platform Validate, deployment, live health, wake-on-request and database/uploads surviving a normal redeployment. Team 39, the private repository/branch/root and an observed 0.5 CPU workspace ceiling are recorded in [DEPLOYMENT.md](DEPLOYMENT.md); these observations do not prove runtime acceptance.
+- Successful RepoRun deployment, live health, wake-on-request, runtime disk/resource sufficiency and database/uploads surviving a normal redeployment. Private-repository read access, required environment configuration and actual platform validation are complete; two Deploy attempts failed without exposed build/container diagnostics. The course-required ingress policy remains unconfirmed. See [DEPLOYMENT.md](DEPLOYMENT.md); validated configuration does not prove hosted operation.
 - Hosted proxy behavior: rate limits currently use `REMOTE_ADDR`. `TRUST_PROXY` is reserved and unused; forwarded client headers are not trusted. Verify whether RepoRun preserves visitor addresses or causes visitors to share the proxy's rate-limit bucket before treating hosted behavior as checked.
 - Backup/restore on the target platform. Procedures exist; a live restoration has not been demonstrated.
 - Current business prices/hours, staff/services, exact entrance, domain ownership, media authorization, legal identity and unspecified course rules.

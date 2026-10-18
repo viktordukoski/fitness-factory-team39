@@ -1,11 +1,16 @@
 FROM php:8.3.35-apache-bookworm
 
+# Separate completed build steps can be reused when the builder retains its cache.
+# An interrupted step still has to run again.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends libicu-dev libonig-dev libpng-dev libjpeg62-turbo-dev libwebp-dev \
-    && docker-php-ext-configure gd --with-jpeg --with-webp \
-    && docker-php-ext-install -j2 pdo_mysql mbstring intl gd opcache \
-    && a2enmod rewrite headers \
     && rm -rf /var/lib/apt/lists/*
+RUN docker-php-ext-install -j2 pdo_mysql opcache
+RUN docker-php-ext-install -j2 mbstring
+RUN docker-php-ext-configure gd --with-jpeg --with-webp \
+    && docker-php-ext-install -j2 gd
+RUN docker-php-ext-install -j2 intl
+RUN a2enmod rewrite headers
 
 WORKDIR /var/www/html
 COPY app/ app/

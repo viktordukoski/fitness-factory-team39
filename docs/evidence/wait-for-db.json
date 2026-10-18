@@ -1,0 +1,65 @@
+{
+  "scope": "Startup control-flow regression using the actual PHP source with namespaced PDO, PDOException and sleep stubs; no real MySQL connection, Docker build or hosted deployment is tested.",
+  "source": "docker/wait-for-db.php",
+  "source_sha256": "7eb1fe31236d0d83f00bfaa136f4a50d28ca482758828186932bba67e5e1d937",
+  "checks": [
+    {
+      "test": "Missing/blank DB_NAME stops before connection",
+      "status": "PASS"
+    },
+    {
+      "test": "Missing/blank DB_USER stops before connection",
+      "status": "PASS"
+    },
+    {
+      "test": "Missing/blank DB_PASSWORD stops before connection",
+      "status": "PASS"
+    },
+    {
+      "test": "Missing/blank APP_KEY stops before connection",
+      "status": "PASS"
+    },
+    {
+      "test": "Immediate readiness and default host/port",
+      "status": "PASS"
+    },
+    {
+      "test": "Explicit host/port used",
+      "status": "PASS"
+    },
+    {
+      "test": "Transient connection error recovers",
+      "status": "PASS"
+    },
+    {
+      "test": "Readiness query error recovers",
+      "status": "PASS"
+    },
+    {
+      "test": "Error code zero is logged on first failure",
+      "status": "PASS"
+    },
+    {
+      "test": "Repeated errors deduplicated; changes reported",
+      "status": "PASS"
+    },
+    {
+      "test": "MySQL 1044 stops immediately with safe diagnostic",
+      "status": "PASS"
+    },
+    {
+      "test": "MySQL 1045 stops immediately with safe diagnostic",
+      "status": "PASS"
+    },
+    {
+      "test": "MySQL 1049 stops immediately with safe diagnostic",
+      "status": "PASS"
+    },
+    {
+      "test": "Exhaustion stops after 60 connections and 59 pauses",
+      "status": "PASS"
+    }
+  ],
+  "passed": 14,
+  "total": 14
+}

@@ -18,7 +18,13 @@ for name,service in compose['services'].items():
 check('No top-level custom networks','networks' not in compose)
 check('Single application ingress',stack=={'version':1,'ingress':[{'name':'app','service':'web','port':80,'primary':True,'access':{'type':'public'}}]})
 check('No database ingress',all(i['service']!='db' for i in stack['ingress']))
-check('Required resource interpolation without quota assumption',all(compose['services'][s][k]=='${'+env+'}' for s,k,env in [('web','cpus','WEB_CPUS'),('web','mem_limit','WEB_MEMORY'),('db','cpus','DB_CPUS'),('db','mem_limit','DB_MEMORY')]))
+cpu_limits=[service.get('cpus') for service in compose['services'].values()]
+memory_limits=[service.get('mem_limit') for service in compose['services'].values()]
+literal_cpu=all(isinstance(value,(int,float)) and not isinstance(value,bool) and value>0 for value in cpu_limits)
+literal_memory=all(isinstance(value,str) and re.fullmatch(r'[1-9][0-9]*[kmg]',value.lower()) for value in memory_limits)
+check('Hosted resource limits are literal for RepoRun validation',literal_cpu and literal_memory)
+memory_bytes=sum(int(value[:-1])*{'k':1024,'m':1024**2,'g':1024**3}[value[-1].lower()] for value in memory_limits) if literal_memory else None
+check('Hosted limits fit observed 0.5 CPU and 1000 MB quota',literal_cpu and sum(cpu_limits)<=0.5 and memory_bytes is not None and memory_bytes<=1_000_000_000)
 names=re.findall(r'\$\{([A-Z_][A-Z0-9_]*)(?::-[^}]*)?\}',(root/'docker-compose.yml').read_text())
 example={line.split('=',1)[0] for line in (root/'.env.example').read_text().splitlines() if line and not line.startswith('#')}
 required=set(re.findall(r'\$\{([A-Z_][A-Z0-9_]*)\}',(root/'docker-compose.yml').read_text()))

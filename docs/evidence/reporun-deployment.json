@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-18",
+  "timezone": "Europe/Skopje",
+  "status": "blocked",
+  "authorization": "User explicitly requested deployment if checks were satisfactory; previous pause revoked.",
+  "repository_commit": "63091f152496dc042e99518488fee995af5e8d43",
+  "stack_id": "stk_01M45STKB0FF9YE23XNR7V5FTC",
+  "validation": {
+    "status": "succeeded",
+    "operation_id": "op_01M589RGR4Z2Q1YQET8F161BRW",
+    "validated_commit": "9e10b8b113867dc2efdf154f22401e2a5c60e490",
+    "scope": "Latest commit changes documentation only; application and deployment configuration are identical."
+  },
+  "attempts": [
+    {"operation_id": "op_01M58A6TQ81Y1QQSPJJXCATBJ3", "started_local": "22:10", "finished_local": "22:13", "status": "failed", "error_code": "deploy.error"},
+    {"operation_id": "op_01M58AF5S9PCAZYB05DDSJ5XVS", "started_local": "22:15", "finished_local": "22:18", "status": "failed", "error_code": "deploy.error"}
+  ],
+  "visible_error": "Stack deploy failed.",
+  "available_raw_log": {
+    "name": "git-sync-reset.log",
+    "bytes": 77,
+    "text": "HEAD is now at 63091f1 Record successful RepoRun validation with Team 39 URL"
+  },
+  "final_stack_state": "Failed Valid",
+  "live_endpoint_count": 0,
+  "not_verified": ["Docker build completion", "container startup", "actual generated endpoint", "live health and smoke checks", "database and upload persistence"],
+  "blocker": "RepoRun exposes no build/container error details for either failure. The cause cannot be determined from available diagnostics. A platform administrator must inspect the server-side operation error before a targeted fix can be made.",
+  "screenshot": "../screenshots/reporun-deployment-blocked.png"
+}

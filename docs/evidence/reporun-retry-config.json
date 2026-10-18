@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "test": "web explicit CPU/RAM limits",
+      "status": "PASS"
+    },
+    {
+      "test": "web no prohibited Compose fields",
+      "status": "PASS"
+    },
+    {
+      "test": "web relative .stack-data persistence",
+      "status": "PASS"
+    },
+    {
+      "test": "db explicit CPU/RAM limits",
+      "status": "PASS"
+    },
+    {
+      "test": "db no prohibited Compose fields",
+      "status": "PASS"
+    },
+    {
+      "test": "db relative .stack-data persistence",
+      "status": "PASS"
+    },
+    {
+      "test": "No top-level custom networks",
+      "status": "PASS"
+    },
+    {
+      "test": "Single application ingress",
+      "status": "PASS"
+    },
+    {
+      "test": "No database ingress",
+      "status": "PASS"
+    },
+    {
+      "test": "Hosted resource limits are literal for RepoRun validation",
+      "status": "PASS"
+    },
+    {
+      "test": "Hosted limits fit observed 0.5 CPU and 1000 MB quota",
+      "status": "PASS"
+    },
+    {
+      "test": "Required configuration documented",
+      "status": "PASS"
+    },
+    {
+      "test": "Environment names conform",
+      "status": "PASS"
+    },
+    {
+      "test": "Local host port is loopback only",
+      "status": "PASS"
+    },
+    {
+      "test": "No committed real environment file",
+      "status": "PASS"
+    },
+    {
+      "test": "Persistent runtime excluded from Git and Docker context",
+      "status": "PASS"
+    }
+  ],
+  "passed": 16,
+  "total": 16
+}
