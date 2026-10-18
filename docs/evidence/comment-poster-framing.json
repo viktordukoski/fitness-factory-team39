@@ -1,0 +1,60 @@
+{
+  "status": "PASS",
+  "scope": "Final poster overlay and frame check",
+  "results": [
+    {
+      "width": 320,
+      "frames": [
+        {
+          "src": "/assets/class-booking.png",
+          "fit": "contain",
+          "arrow": "none",
+          "contained": true
+        },
+        {
+          "src": "/assets/membership-packages.png",
+          "fit": "contain",
+          "arrow": "none",
+          "contained": true
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "width": 714,
+      "frames": [
+        {
+          "src": "/assets/class-booking.png",
+          "fit": "contain",
+          "arrow": "none",
+          "contained": true
+        },
+        {
+          "src": "/assets/membership-packages.png",
+          "fit": "contain",
+          "arrow": "none",
+          "contained": true
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "width": 1440,
+      "frames": [
+        {
+          "src": "/assets/class-booking.png",
+          "fit": "contain",
+          "arrow": "none",
+          "contained": true
+        },
+        {
+          "src": "/assets/membership-packages.png",
+          "fit": "contain",
+          "arrow": "none",
+          "contained": true
+        }
+      ],
+      "status": "PASS"
+    }
+  ]
+}

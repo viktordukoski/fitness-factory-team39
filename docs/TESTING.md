@@ -1,5 +1,18 @@
 # Executed verification - 18 October 2026
 
+## Browser-comment update — 18 October 2026
+
+Implemented all nine browser comments: six supplied photos and the trainer names Boban, Emilija and Martin. Photos and names are consistent across the corresponding cards, profiles, article pages and schedule references. The existing layout is retained; full promotional posters use contain, portrait crops align to the top, and redundant overlay arrows are hidden on posters to keep text visible.
+
+- **36 page renders PASS**, with no broken images, horizontal overflow or JavaScript exceptions: home, services, trainers, both News listing pages, relevant detail/article pages and classes at desktop, tablet and mobile widths, plus home in all six locales. [Browser evidence](evidence/comment-browser.json). The first check assumed all news appeared on one page; correcting it to inspect the existing pagination resolved that check-only failure. A follow-up viewport inspection confirmed the entire pricing poster fits the image frame at 714 px.
+- **8/8 trainer migration checks PASS:** fresh seed definitions, all 18 locale rows, execution and repeat execution, independent preservation of custom titles/alts, stable IDs/relationships/bookings and restoration of isolated test values. [Migration evidence](evidence/comment-trainer-migration.json). Migration 003 is applied to the local preview; fresh installations use the updated seed names.
+- **All six new files preserve supplied bytes:** [asset evidence](evidence/comment-image-assets.json). Emilija uses the exact screenshot path supplied in the clarification.
+- **Final poster framing PASS at 320/714/1440 px:** both promotional images remain inside their frames, use contain, and have no overlapping arrow. [Framing evidence](evidence/comment-poster-framing.json).
+- **56 PHP files passed syntax checks.** The final shared-template adjustment was checked again.
+
+Representative [desktop portraits](screenshots/comment-trainers-1440.png), [desktop article cards](screenshots/comment-news-1440.png), [Pilates card](screenshots/comment-pilates.png), and the [tablet poster viewport](screenshots/comment-poster-frame-714.png) were inspected. Full-height element captures at narrow widths can include browser screenshot artifacts; the actual viewport geometry and screenshot confirm that the pricing poster is not clipped. This update does not deploy the application; previous broader verification below retains its original scope.
+
+
 ## Supplied-image update — 18 October 2026
 
 The logo and four supplied gym images replace their matching placeholders. The overall layout is retained; About preserves the entire supplied composition. New alt text is localized in all six languages. No upload or deployment occurred.

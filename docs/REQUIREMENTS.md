@@ -1,5 +1,11 @@
 # Final requirements audit
 
+## Later browser-comment update — 18 October 2026
+
+Comments 1–6 add the supplied assets `class-booking.png`, `pilates.png`, `membership-packages.png`, `trainer-boban.png`, `trainer-emilija.png` and `trainer-martin.png`. Supplied bytes are preserved in all six files; [asset evidence](evidence/comment-image-assets.json) records their hashes. These changes supersede the earlier retention of Pilates/studio and the three trainer illustrations for the affected records while preserving the overall layout and custom CMS image paths.
+
+Comments 7–9 rename Alex → Boban, Mira → Emilija and Noah → Martin in all six locales using the requested Latin spellings. Fresh seed data and [migration 003](../database/migrations/003-trainer-names.sql) implement the change while retaining legacy slugs, IDs and relationships and preserving custom title/alt edits. The focused isolated-database check passed **8/8** (including repeat execution and restoration of test snapshots); migration 003 was then applied to the local preview. Browser checks passed for 36 page renders; see [TESTING.md](TESTING.md), separately from prior evidence below. The source update follows the authorized GitHub workflow; deployment remains paused.
+
 ## Later image instruction — completed 18 October 2026
 
 | Requested change | Result |

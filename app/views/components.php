@@ -20,21 +20,30 @@ function ff_image_path(array $item,string $fallback='gym-scene.svg'): string {
     $path=$path?:$fallback;
     $path=str_starts_with($path,'assets/')?substr($path,7):$path;
     // Replace bundled placeholders without changing stored CMS images or uploads.
+    $articlePhotos=['how-demo-bookings-work'=>['studio.svg','class-booking.png'],'your-first-demo-visit'=>['hero.svg','membership-packages.png']];
+    $articlePhoto=$articlePhotos[$item['slug']??'']??null;
+    if($articlePhoto&&$path===$articlePhoto[0])return $articlePhoto[1];
+    if($path==='studio.svg'&&($item['category']??'')==='pilates')return 'pilates.png';
     if($path==='studio.svg'&&(($item['category']??'')==='functional'||($item['kind']??'')==='gallery'))return 'functional.webp';
-    return ['strength.svg'=>'strength.png','gym-scene.svg'=>'strength.png','cardio.svg'=>'cardio.webp'][$path]??$path;
+    return ['strength.svg'=>'strength.png','gym-scene.svg'=>'strength.png','cardio.svg'=>'cardio.webp','trainer-1.svg'=>'trainer-boban.png','trainer-2.svg'=>'trainer-emilija.png','trainer-3.svg'=>'trainer-martin.png'][$path]??$path;
 }
 function ff_image(array $item,string $fallback='gym-scene.svg'): string { return ff_asset(ff_image_path($item,$fallback)); }
+function ff_image_class(array $item): string {
+    $path=ff_image_path($item);
+    if(in_array($path,['class-booking.png','membership-packages.png'],true))return 'photo-poster';
+    return in_array($path,['trainer-boban.png','trainer-emilija.png','trainer-martin.png'],true)?'photo-portrait':'';
+}
 function ff_image_alt(array $item): string {
     $path=ff_image_path($item,($item['kind']??'')==='trainer'?'trainer-avatar.svg':'gym-scene.svg');
     $originalPath=preg_replace('#^assets/#','',ltrim($item['image']??'','/'));
     if($originalPath===$path&&trim($item['alt']??'')!=='')return $item['alt'];
-    $photoKeys=['strength.png'=>'photo_strength','cardio.webp'=>'photo_cardio','functional.webp'=>'photo_functional','about.png'=>'photo_about'];
+    $photoKeys=['strength.png'=>'photo_strength','cardio.webp'=>'photo_cardio','functional.webp'=>'photo_functional','about.png'=>'photo_about','class-booking.png'=>'photo_booking','pilates.png'=>'photo_pilates','membership-packages.png'=>'photo_packages','trainer-boban.png'=>'photo_boban','trainer-emilija.png'=>'photo_emilija','trainer-martin.png'=>'photo_martin'];
     return isset($photoKeys[$path])?t($photoKeys[$path]):(trim($item['alt']??'')!==''?$item['alt']:($item['title']??t('representative_art')));
 }
 function ff_pass_reference(array $pass): string { return 'FF-' . str_pad((string)$pass['id'],6,'0',STR_PAD_LEFT); }
 function ff_card(array $item): void {
     $kind=$item['kind']??'service'; $destination=$kind==='news' ? 'article' : 'detail'; $trainer=$kind==='trainer';
-    ?><article class="content-card <?= $trainer?'trainer-card':'' ?>"><a class="card-image" href="<?=e(url($destination,['id'=>$item['id']]))?>"><img src="<?=e(ff_image($item,$trainer?'trainer-avatar.svg':'gym-scene.svg'))?>" alt="<?=e(ff_image_alt($item))?>" width="640" height="460" loading="lazy"><span class="card-arrow"><?=ff_icon()?></span></a><div class="card-body"><p class="eyebrow"><?=e(t($item['category']??$kind))?></p><?php if($kind==='news'&&!empty($item['published_at'])): ?><p class="article-date"><?=e(local_time($item['published_at'],'d M Y'))?></p><?php endif ?><h3><a href="<?=e(url($destination,['id'=>$item['id']]))?>"><?=e($item['title'])?></a></h3><p><?=e($item['summary']??'')?></p><a class="text-link" href="<?=e(url($destination,['id'=>$item['id']]))?>"><?=e(t($kind==='news'?'read_more':'view_details'))?> <?=ff_icon()?></a></div></article><?php
+    ?><article class="content-card <?= $trainer?'trainer-card':'' ?>"><a class="card-image <?=e(ff_image_class($item))?>" href="<?=e(url($destination,['id'=>$item['id']]))?>"><img class="<?=e(ff_image_class($item))?>" src="<?=e(ff_image($item,$trainer?'trainer-avatar.svg':'gym-scene.svg'))?>" alt="<?=e(ff_image_alt($item))?>" width="640" height="460" loading="lazy"><span class="card-arrow"><?=ff_icon()?></span></a><div class="card-body"><p class="eyebrow"><?=e(t($item['category']??$kind))?></p><?php if($kind==='news'&&!empty($item['published_at'])): ?><p class="article-date"><?=e(local_time($item['published_at'],'d M Y'))?></p><?php endif ?><h3><a href="<?=e(url($destination,['id'=>$item['id']]))?>"><?=e($item['title'])?></a></h3><p><?=e($item['summary']??'')?></p><a class="text-link" href="<?=e(url($destination,['id'=>$item['id']]))?>"><?=e(t($kind==='news'?'read_more':'view_details'))?> <?=ff_icon()?></a></div></article><?php
 }
 function ff_class_row(array $session): void {
     $start=$session['starts_at']??$session['start_at']??''; $end=$session['ends_at']??$session['end_at']??''; $remaining=(int)($session['remaining']??0); $status=$session['status']??'scheduled';

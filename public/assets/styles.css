@@ -13,3 +13,9 @@
 /* Supplied brand image and uncropped About artwork. */
 .brand img{height:auto;aspect-ratio:1;object-fit:contain;flex-shrink:0;border-radius:3px}
 .detail-visual .about-photo{height:auto;max-height:none;aspect-ratio:auto;object-fit:contain}
+
+/* Keep supplied poster text visible and portrait faces inside existing image frames. */
+.card-image img.photo-poster,.detail-visual img.photo-poster{object-fit:contain;background:#111}
+.content-card:hover .card-image img.photo-poster{transform:none}
+.card-image img.photo-portrait,.detail-visual img.photo-portrait{object-position:50% 0}
+.card-image.photo-poster .card-arrow{display:none}

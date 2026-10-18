@@ -454,4 +454,10 @@ return [
     'photo_about' => 'Надворешноста на Fitness Factory Охрид ноќе, со логото и текстот „Вашиот фитнес центар“.',
     'gallery_intro' => 'Разгледајте ги просторите за тренинг во Fitness Factory.',
     'gallery_caption' => 'Во Fitness Factory',
+    'photo_booking' => 'Постер за тренинг на Fitness Factory со жена што крева шипка.',
+    'photo_pilates' => 'Групен тренинг во студиото на Fitness Factory.',
+    'photo_packages' => 'Пакети и цени за членство во Fitness Factory на македонски.',
+    'photo_boban' => 'Портрет на Boban.',
+    'photo_emilija' => 'Портрет на Emilija.',
+    'photo_martin' => 'Портрет на Martin.',
 ];

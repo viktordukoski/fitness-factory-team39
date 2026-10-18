@@ -454,4 +454,10 @@ return [
     'photo_about' => 'Außenansicht von Fitness Factory Ohrid bei Nacht mit dem Logo und dem mazedonischen Schriftzug „Ihr Fitnesscenter“.',
     'gallery_intro' => 'Entdecken Sie die Trainingsbereiche von Fitness Factory.',
     'gallery_caption' => 'Einblick in Fitness Factory',
+    'photo_booking' => 'Trainingsplakat von Fitness Factory mit einer Frau beim Langhanteltraining.',
+    'photo_pilates' => 'Gruppentraining im Studio von Fitness Factory.',
+    'photo_packages' => 'Mitgliedschaftspakete und Preise von Fitness Factory auf Mazedonisch.',
+    'photo_boban' => 'Porträt von Boban.',
+    'photo_emilija' => 'Porträt von Emilija.',
+    'photo_martin' => 'Porträt von Martin.',
 ];

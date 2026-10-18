@@ -1,0 +1,38 @@
+{
+    "checks": [
+        {
+            "test": "Fresh-install seed defines the three requested Latin names in all six locales",
+            "status": "PASS"
+        },
+        {
+            "test": "Isolated database contains all 18 trainer translation rows",
+            "status": "PASS"
+        },
+        {
+            "test": "Migration renames post-002 titles and alt text in all six locales",
+            "status": "PASS"
+        },
+        {
+            "test": "Repeating the actual migration SQL leaves renamed values unchanged",
+            "status": "PASS"
+        },
+        {
+            "test": "Custom title and alt edits survive independently, including case and trailing spaces",
+            "status": "PASS"
+        },
+        {
+            "test": "Repeating migration also preserves mixed custom and renamed fields",
+            "status": "PASS"
+        },
+        {
+            "test": "Content IDs, relationships, class bookings, other copy and migration history remain unchanged",
+            "status": "PASS"
+        },
+        {
+            "test": "Original trainer title and alt snapshots are restored after verification",
+            "status": "PASS"
+        }
+    ],
+    "passed": 8,
+    "total": 8
+}

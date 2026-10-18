@@ -454,4 +454,10 @@ return [
     'photo_about' => 'Esterno di Fitness Factory Ohrid di notte, con il logo e il testo “Il vostro centro fitness” in macedone.',
     'gallery_intro' => 'Esplorate gli spazi di allenamento di Fitness Factory.',
     'gallery_caption' => 'Dentro Fitness Factory',
+    'photo_booking' => 'Poster di Fitness Factory con una donna che solleva un bilanciere.',
+    'photo_pilates' => 'Allenamento di gruppo nello studio di Fitness Factory.',
+    'photo_packages' => 'Pacchetti e prezzi degli abbonamenti Fitness Factory in macedone.',
+    'photo_boban' => 'Ritratto di Boban.',
+    'photo_emilija' => 'Ritratto di Emilija.',
+    'photo_martin' => 'Ritratto di Martin.',
 ];

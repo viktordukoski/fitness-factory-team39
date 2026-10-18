@@ -1,10 +1,16 @@
 # Content verification register
 
+## Later browser-comment photos and trainer names — 18 October 2026
+
+The user supplied six further images: comment 1 → `class-booking.png`, 2 → `pilates.png`, 3 → `membership-packages.png`, 4 → `trainer-boban.png`, 5 → `trainer-emilija.png`, and 6 → `trainer-martin.png`, all under `public/assets/`. Emilija's source is the supplied `Screenshot 2026-10-18 204508.png`. Their bytes are preserved, with hashes recorded in [comment asset evidence](evidence/comment-image-assets.json).
+
+Comments 7–9 explicitly rename Alex to Boban, Mira to Emilija and Noah to Martin, using those Latin spellings in every locale. Fresh seed data and repeat-safe migration 003 implement the names while preserving custom edits, existing slugs, IDs and relationships. These instructions supersede the earlier retention of Pilates/studio and the three trainer illustrations for the affected records. They record the user's requested photo/name associations; no independent identity, qualifications, employment or photo-rights verification is claimed. Original profile/source history below remains a historical record. See [image update details](IMAGE-UPDATES.md).
+
 ## Later supplied logo and photos — 18 October 2026
 
 The user explicitly requested these five uploaded images for the website: `image.png` for the logo, `image1.png`/`image2.png` for strength, `CARDIO.webp` for cardio, `FUNCT.webp` for functional training, and `image3.png` for About. They are copied unchanged to `logo.png`, `strength.png`, `cardio.webp`, `functional.webp` and `about.png` under `public/assets/`. The two strength filenames contain identical bytes. See [image update details](IMAGE-UPDATES.md) and [asset hashes](evidence/image-assets.json).
 
-This later instruction supersedes earlier statements below about using only original illustrations. Pilates/studio, wellness, trainer and location artwork remains where no matching photo was supplied. No ownership, additional business fact, staff identity or service availability is inferred from the photos. The original screenshot/specification provenance below is retained as a historical record.
+This instruction supersedes earlier statements below about using only original illustrations. Pilates/studio and trainer artwork retained at that stage is replaced for the records in the later browser-comment update above; wellness and location artwork remains. No ownership, additional business fact, staff identity or service availability is inferred from the photos. The original screenshot/specification provenance below is retained as a historical record.
 
 Public presentation update, 18 October 2026: the user affirmed the supplied gym details and requested removal of public fictional/demo/source-history and confirmation wording. The website uses direct business copy in all six locales. This document and internal source records retain the original provenance; their earlier descriptions of public labels are superseded by the user's latest instruction. No independent business re-verification is claimed.
 
@@ -49,7 +55,7 @@ These are sourced prices, while purchasing/activation is simulated. A package's 
 
 The reported 1,500 m² and 1,800 m² conflict and are not presented as a definitive area. Opening date, origin story, current spa operation, accessibility, parking, transport, real trainer qualifications, exact equipment count and official email remain unverified. No claims about zero emissions, regional superiority or sponsored partnerships are used. Equipment brands are described as historical equipment references.
 
-## Demonstration content and assets
+## Original demonstration content and assets — historical implementation record
 
 All trainer profiles and their illustrated portraits are fictional. Classes, timetable, class preparation text, sample news, cancellation rules, booking entitlement and sample accounts/orders are project examples. They are not the gym's real staff, announcements or policies. Contact/newsletter data is stored locally for administration; no delivery is claimed. Successful, failed and pending demo payments change local application records only and never collect bank/card data.
 

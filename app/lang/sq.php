@@ -454,4 +454,10 @@ return [
     'photo_about' => 'Pamja e jashtme e Fitness Factory Ohër natën, me logon dhe tekstin “Qendra juaj e fitnesit” në maqedonisht.',
     'gallery_intro' => 'Eksploroni hapësirat e stërvitjes në Fitness Factory.',
     'gallery_caption' => 'Brenda Fitness Factory',
+    'photo_booking' => 'Poster stërvitjeje i Fitness Factory me një grua që ngre një shtangë.',
+    'photo_pilates' => 'Seancë stërvitjeje në grup në studion e Fitness Factory.',
+    'photo_packages' => 'Paketat dhe çmimet e anëtarësimit në Fitness Factory në maqedonisht.',
+    'photo_boban' => 'Portret i Boban.',
+    'photo_emilija' => 'Portret i Emilija.',
+    'photo_martin' => 'Portret i Martin.',
 ];

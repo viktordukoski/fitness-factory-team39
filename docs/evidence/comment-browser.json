@@ -1,0 +1,266 @@
+{
+  "status": "PASS",
+  "scope": "Nine user browser comments: six images and three trainer names",
+  "rendered": 36,
+  "views": [
+    {
+      "route": "home",
+      "width": 320,
+      "lang": "en",
+      "id": null,
+      "status": "PASS"
+    },
+    {
+      "route": "services",
+      "width": 320,
+      "lang": "en",
+      "id": null,
+      "status": "PASS"
+    },
+    {
+      "route": "trainers",
+      "width": 320,
+      "lang": "en",
+      "id": null,
+      "status": "PASS"
+    },
+    {
+      "route": "news",
+      "width": 320,
+      "lang": "en",
+      "id": null,
+      "p": 1,
+      "status": "PASS"
+    },
+    {
+      "route": "home",
+      "width": 714,
+      "lang": "en",
+      "id": null,
+      "status": "PASS"
+    },
+    {
+      "route": "services",
+      "width": 714,
+      "lang": "en",
+      "id": null,
+      "status": "PASS"
+    },
+    {
+      "route": "trainers",
+      "width": 714,
+      "lang": "en",
+      "id": null,
+      "status": "PASS"
+    },
+    {
+      "route": "news",
+      "width": 714,
+      "lang": "en",
+      "id": null,
+      "p": 1,
+      "status": "PASS"
+    },
+    {
+      "route": "home",
+      "width": 1440,
+      "lang": "en",
+      "id": null,
+      "status": "PASS"
+    },
+    {
+      "route": "services",
+      "width": 1440,
+      "lang": "en",
+      "id": null,
+      "status": "PASS"
+    },
+    {
+      "route": "trainers",
+      "width": 1440,
+      "lang": "en",
+      "id": null,
+      "status": "PASS"
+    },
+    {
+      "route": "news",
+      "width": 1440,
+      "lang": "en",
+      "id": null,
+      "p": 1,
+      "status": "PASS"
+    },
+    {
+      "route": "news",
+      "width": 320,
+      "lang": "en",
+      "id": null,
+      "p": 2,
+      "status": "PASS"
+    },
+    {
+      "route": "news",
+      "width": 714,
+      "lang": "en",
+      "id": null,
+      "p": 2,
+      "status": "PASS"
+    },
+    {
+      "route": "news",
+      "width": 1440,
+      "lang": "en",
+      "id": null,
+      "p": 2,
+      "status": "PASS"
+    },
+    {
+      "route": "home",
+      "width": 390,
+      "lang": "mk",
+      "id": null,
+      "status": "PASS"
+    },
+    {
+      "route": "home",
+      "width": 390,
+      "lang": "sq",
+      "id": null,
+      "status": "PASS"
+    },
+    {
+      "route": "home",
+      "width": 390,
+      "lang": "de",
+      "id": null,
+      "status": "PASS"
+    },
+    {
+      "route": "home",
+      "width": 390,
+      "lang": "fr",
+      "id": null,
+      "status": "PASS"
+    },
+    {
+      "route": "home",
+      "width": 390,
+      "lang": "it",
+      "id": null,
+      "status": "PASS"
+    },
+    {
+      "route": "home",
+      "width": 1440,
+      "lang": "en",
+      "id": null,
+      "status": "PASS"
+    },
+    {
+      "route": "detail",
+      "width": 390,
+      "lang": "en",
+      "id": "9",
+      "status": "PASS"
+    },
+    {
+      "route": "detail",
+      "width": 390,
+      "lang": "en",
+      "id": "10",
+      "status": "PASS"
+    },
+    {
+      "route": "detail",
+      "width": 390,
+      "lang": "en",
+      "id": "11",
+      "status": "PASS"
+    },
+    {
+      "route": "article",
+      "width": 390,
+      "lang": "en",
+      "id": "16",
+      "status": "PASS"
+    },
+    {
+      "route": "article",
+      "width": 390,
+      "lang": "en",
+      "id": "15",
+      "status": "PASS"
+    },
+    {
+      "route": "services",
+      "width": 1440,
+      "lang": "en",
+      "id": null,
+      "status": "PASS"
+    },
+    {
+      "route": "detail",
+      "width": 390,
+      "lang": "en",
+      "id": "4",
+      "status": "PASS"
+    },
+    {
+      "route": "classes",
+      "width": 390,
+      "lang": "en",
+      "id": null,
+      "status": "PASS"
+    },
+    {
+      "route": "class",
+      "width": 390,
+      "lang": "en",
+      "id": "1",
+      "status": "PASS"
+    },
+    {
+      "route": "class",
+      "width": 390,
+      "lang": "en",
+      "id": "9",
+      "status": "PASS"
+    },
+    {
+      "route": "class",
+      "width": 390,
+      "lang": "en",
+      "id": "13",
+      "status": "PASS"
+    },
+    {
+      "route": "home",
+      "width": 390,
+      "lang": "en",
+      "id": null,
+      "status": "PASS"
+    },
+    {
+      "route": "home",
+      "width": 714,
+      "lang": "en",
+      "id": null,
+      "status": "PASS"
+    },
+    {
+      "route": "home",
+      "width": 1440,
+      "lang": "en",
+      "id": null,
+      "status": "PASS"
+    },
+    {
+      "route": "services",
+      "width": 714,
+      "lang": "en",
+      "id": null,
+      "status": "PASS"
+    }
+  ],
+  "failures": []
+}

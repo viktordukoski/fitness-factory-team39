@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "images": [
+    {
+      "comment": 1,
+      "file": "public/assets/class-booking.png",
+      "bytes": 2634239,
+      "sha256": "5150144907cb8a7058f22f142e5554ef2bf17d63bc87984e2e2d3256d11962b0",
+      "source": "User-attached additional image for this browser comment, unchanged PNG bytes."
+    },
+    {
+      "comment": 2,
+      "file": "public/assets/pilates.png",
+      "bytes": 2750218,
+      "sha256": "9ea70a363efb673ce8a21f071abfb454ba92055aad6c9eda6021a9d15c8ba891",
+      "source": "User-attached additional image for this browser comment, unchanged PNG bytes."
+    },
+    {
+      "comment": 3,
+      "file": "public/assets/membership-packages.png",
+      "bytes": 729059,
+      "sha256": "976edfbfb2a4f0c376f7dec88d8197efafc8dfc0da617d0ee828b2d3bc9cbc70",
+      "source": "User-attached additional image for this browser comment, unchanged PNG bytes."
+    },
+    {
+      "comment": 4,
+      "file": "public/assets/trainer-boban.png",
+      "bytes": 679366,
+      "sha256": "a75f5e3b55605301fd5ea0d9f2eaf65ec59bd585892f909530933f439aab0d25",
+      "source": "User-attached additional image for this browser comment, unchanged PNG bytes."
+    },
+    {
+      "comment": 5,
+      "file": "public/assets/trainer-emilija.png",
+      "bytes": 357957,
+      "sha256": "775fd3f0fd7947b5bcd8615951783ea2becc7a1c27b8f21d13bbf24ff3fdefa0",
+      "source": "Screenshot 2026-10-18 204508.png",
+      "identical_to_supplied": true
+    },
+    {
+      "comment": 6,
+      "file": "public/assets/trainer-martin.png",
+      "bytes": 1005910,
+      "sha256": "500dbe78876596a6aa8ad5e7edc1ab4bd3db831894ac3bb09ae117a9a52e16df",
+      "source": "User-attached additional image for this browser comment, unchanged PNG bytes."
+    }
+  ]
+}

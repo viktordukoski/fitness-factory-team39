@@ -454,4 +454,10 @@ return [
     'photo_about' => 'Fitness Factory Ohrid exterior at night with the gym logo and the text “Your fitness center” in Macedonian.',
     'gallery_intro' => 'Explore the training spaces at Fitness Factory.',
     'gallery_caption' => 'Inside Fitness Factory',
+    'photo_booking' => 'Fitness Factory training poster showing a woman lifting a barbell.',
+    'photo_pilates' => 'A group exercise session in the Fitness Factory studio.',
+    'photo_packages' => 'Fitness Factory membership packages and prices in Macedonian.',
+    'photo_boban' => 'Portrait of Boban.',
+    'photo_emilija' => 'Portrait of Emilija.',
+    'photo_martin' => 'Portrait of Martin.',
 ];
