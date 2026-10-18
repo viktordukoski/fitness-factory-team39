@@ -460,4 +460,5 @@ return [
     'photo_boban' => 'Portrait of Boban.',
     'photo_emilija' => 'Portrait of Emilija.',
     'photo_martin' => 'Portrait of Martin.',
+    'photo_cafe' => 'Seating and coffee counter inside the Fitness Factory café.',
 ];

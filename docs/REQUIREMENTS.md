@@ -1,5 +1,7 @@
 # Final requirements audit
 
+Latest gallery comment — **complete, 18 October 2026**: the fourth gallery image uses the supplied café photograph, with matching localized alt text and enlarged view. The existing layout, caption, other gallery images and custom uploads remain intact. [Nine targeted browser views passed](evidence/cafe-gallery.json). The source follows the authorized GitHub update workflow; RepoRun deployment remains paused.
+
 ## Later browser-comment update — 18 October 2026
 
 Comments 1–6 add the supplied assets `class-booking.png`, `pilates.png`, `membership-packages.png`, `trainer-boban.png`, `trainer-emilija.png` and `trainer-martin.png`. Supplied bytes are preserved in all six files; [asset evidence](evidence/comment-image-assets.json) records their hashes. These changes supersede the earlier retention of Pilates/studio and the three trainer illustrations for the affected records while preserving the overall layout and custom CMS image paths.

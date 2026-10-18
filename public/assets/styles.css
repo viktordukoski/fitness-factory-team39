@@ -19,3 +19,7 @@
 .content-card:hover .card-image img.photo-poster{transform:none}
 .card-image img.photo-portrait,.detail-visual img.photo-portrait{object-position:50% 0}
 .card-image.photo-poster .card-arrow{display:none}
+
+/* Preserve the full café poster in the gallery thumbnail. */
+.gallery-trigger img.photo-poster{object-fit:contain;background:#111}
+.gallery-trigger.photo-poster>span{display:none}

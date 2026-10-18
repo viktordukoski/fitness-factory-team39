@@ -1,5 +1,9 @@
 # Executed verification - 18 October 2026
 
+## Café gallery replacement — 18 October 2026
+
+The selected fourth gallery image now uses the user's unchanged café photograph. **9/9 targeted browser views PASS:** 320/714/1440 px, all six locales, album filtering, image loading, matching lightbox source/alt, full-image containment and unchanged other gallery photos. No horizontal overflow or browser exceptions were found. Both changed PHP templates passed syntax checks. See [browser evidence](evidence/cafe-gallery.json), [original-byte hash](evidence/cafe-asset.json) and the visually inspected [gallery card](screenshots/cafe-gallery.png). No database migration or deployment is involved.
+
 ## Browser-comment update — 18 October 2026
 
 Implemented all nine browser comments: six supplied photos and the trainer names Boban, Emilija and Martin. Photos and names are consistent across the corresponding cards, profiles, article pages and schedule references. The existing layout is retained; full promotional posters use contain, portrait crops align to the top, and redundant overlay arrows are hidden on posters to keep text visible.

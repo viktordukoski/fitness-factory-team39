@@ -1,5 +1,7 @@
 # Supplied image replacements
 
+Latest gallery comment, 18 October 2026: the supplied café photo is saved unchanged as `public/assets/cafe.png` and replaces only the bundled image for gallery record `wellness-illustration` (“A quieter moment”). The caption is preserved; alt text is translated in all six locales. Thumbnail and enlarged view retain the complete composition. Other facility artwork and custom CMS uploads are preserved. Include this additional asset in manual uploads. [Verification](evidence/cafe-gallery.json).
+
 Updated 18 October 2026. The existing PHP templates generate the HTML; the site does not have standalone static HTML pages. The overall layout, colors and interactions are preserved.
 
 | Supplied file | Website asset | Placement |

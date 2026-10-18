@@ -1,5 +1,7 @@
 # Content verification register
 
+Latest gallery image, 18 October 2026: the user supplied a café photograph with the selected “A quieter moment” gallery card. Its original attachment bytes are retained as `public/assets/cafe.png`; see [asset evidence](evidence/cafe-asset.json). This supersedes earlier retention of the illustration for that gallery record only. No additional business details are inferred.
+
 ## Later browser-comment photos and trainer names — 18 October 2026
 
 The user supplied six further images: comment 1 → `class-booking.png`, 2 → `pilates.png`, 3 → `membership-packages.png`, 4 → `trainer-boban.png`, 5 → `trainer-emilija.png`, and 6 → `trainer-martin.png`, all under `public/assets/`. Emilija's source is the supplied `Screenshot 2026-10-18 204508.png`. Their bytes are preserved, with hashes recorded in [comment asset evidence](evidence/comment-image-assets.json).

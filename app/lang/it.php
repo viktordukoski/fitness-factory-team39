@@ -460,4 +460,5 @@ return [
     'photo_boban' => 'Ritratto di Boban.',
     'photo_emilija' => 'Ritratto di Emilija.',
     'photo_martin' => 'Ritratto di Martin.',
+    'photo_cafe' => 'Tavoli, sedute e bancone del caffè di Fitness Factory.',
 ];

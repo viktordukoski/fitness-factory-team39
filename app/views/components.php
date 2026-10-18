@@ -20,6 +20,7 @@ function ff_image_path(array $item,string $fallback='gym-scene.svg'): string {
     $path=$path?:$fallback;
     $path=str_starts_with($path,'assets/')?substr($path,7):$path;
     // Replace bundled placeholders without changing stored CMS images or uploads.
+    if(($item['kind']??'')==='gallery'&&($item['slug']??'')==='wellness-illustration'&&$path==='wellness.svg')return 'cafe.png';
     $articlePhotos=['how-demo-bookings-work'=>['studio.svg','class-booking.png'],'your-first-demo-visit'=>['hero.svg','membership-packages.png']];
     $articlePhoto=$articlePhotos[$item['slug']??'']??null;
     if($articlePhoto&&$path===$articlePhoto[0])return $articlePhoto[1];
@@ -30,14 +31,14 @@ function ff_image_path(array $item,string $fallback='gym-scene.svg'): string {
 function ff_image(array $item,string $fallback='gym-scene.svg'): string { return ff_asset(ff_image_path($item,$fallback)); }
 function ff_image_class(array $item): string {
     $path=ff_image_path($item);
-    if(in_array($path,['class-booking.png','membership-packages.png'],true))return 'photo-poster';
+    if(in_array($path,['class-booking.png','membership-packages.png','cafe.png'],true))return 'photo-poster';
     return in_array($path,['trainer-boban.png','trainer-emilija.png','trainer-martin.png'],true)?'photo-portrait':'';
 }
 function ff_image_alt(array $item): string {
     $path=ff_image_path($item,($item['kind']??'')==='trainer'?'trainer-avatar.svg':'gym-scene.svg');
     $originalPath=preg_replace('#^assets/#','',ltrim($item['image']??'','/'));
     if($originalPath===$path&&trim($item['alt']??'')!=='')return $item['alt'];
-    $photoKeys=['strength.png'=>'photo_strength','cardio.webp'=>'photo_cardio','functional.webp'=>'photo_functional','about.png'=>'photo_about','class-booking.png'=>'photo_booking','pilates.png'=>'photo_pilates','membership-packages.png'=>'photo_packages','trainer-boban.png'=>'photo_boban','trainer-emilija.png'=>'photo_emilija','trainer-martin.png'=>'photo_martin'];
+    $photoKeys=['strength.png'=>'photo_strength','cardio.webp'=>'photo_cardio','functional.webp'=>'photo_functional','about.png'=>'photo_about','class-booking.png'=>'photo_booking','pilates.png'=>'photo_pilates','membership-packages.png'=>'photo_packages','trainer-boban.png'=>'photo_boban','trainer-emilija.png'=>'photo_emilija','trainer-martin.png'=>'photo_martin','cafe.png'=>'photo_cafe'];
     return isset($photoKeys[$path])?t($photoKeys[$path]):(trim($item['alt']??'')!==''?$item['alt']:($item['title']??t('representative_art')));
 }
 function ff_pass_reference(array $pass): string { return 'FF-' . str_pad((string)$pass['id'],6,'0',STR_PAD_LEFT); }

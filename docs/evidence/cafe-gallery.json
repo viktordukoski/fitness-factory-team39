@@ -1,0 +1,61 @@
+{
+  "status": "PASS",
+  "scope": "Selected cafe gallery image, responsive thumbnail, six locale descriptions, album filtering and enlarged view",
+  "views": 9,
+  "results": [
+    {
+      "width": 320,
+      "lang": "en",
+      "category": "",
+      "status": "PASS"
+    },
+    {
+      "width": 714,
+      "lang": "en",
+      "category": "",
+      "status": "PASS"
+    },
+    {
+      "width": 1440,
+      "lang": "en",
+      "category": "",
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "lang": "mk",
+      "category": "",
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "lang": "sq",
+      "category": "",
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "lang": "de",
+      "category": "",
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "lang": "fr",
+      "category": "",
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "lang": "it",
+      "category": "",
+      "status": "PASS"
+    },
+    {
+      "width": 714,
+      "lang": "en",
+      "category": "wellness",
+      "status": "PASS"
+    }
+  ]
+}
