@@ -21,7 +21,11 @@ function valid_email(mixed $value): string
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) throw new RuntimeException('email_invalid', 422);
     return $email;
 }
-function validate_password(string $password): void { if (strlen($password) < 12 || strlen($password) > 72) throw new RuntimeException('password_short', 422); }
+function validate_password(string $password): void
+{
+    if (str_contains($password, "\0")) throw new RuntimeException('validation',422);
+    if (strlen($password) < 12 || strlen($password) > 72) throw new RuntimeException('password_short',422);
+}
 function rate_limit(string $purpose, int $limit = 10, int $seconds = 900, ?string $identity = null): void
 {
     $identity ??= $_SERVER['REMOTE_ADDR'] ?? 'cli';

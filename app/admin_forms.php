@@ -27,9 +27,14 @@ function display_admin(array $common): void
         // Editing a missing translation should show an empty localized form, not silently overwrite fallback text.
         $translation=fetch_one('SELECT title,summary,body,alt FROM content_translations WHERE content_id=? AND language=?',[$record['id'],lang()]);
         $record=array_merge($record,$translation ?: ['title'=>'','summary'=>'','body'=>'','alt'=>'']);
-        $record=array_merge($record,$record['metadata']??[]);
-        if($record['kind']==='trainer') $record['related_service_ids']=implode(',',array_column(related_services((int)$record['id']),'id'));
-        if($record['kind']==='service') $record['related_trainer_ids']=implode(',',array_column(related_trainers((int)$record['id']),'id'));
+        $metadata=json_decode(fetch_one('SELECT metadata FROM content WHERE id=?',[$record['id']])['metadata']??'{}',true) ?: [];
+        $record=array_merge($record,$metadata);
+        foreach (['specialties','languages','equipment','preparation'] as $field) {
+            $record[$field]=$metadata['translations'][lang()][$field]??(lang()==='en'?($metadata[$field]??''):'');
+        }
+        // CMS editing must retain links hidden from public directories, including drafts and archived records.
+        if($record['kind']==='trainer') $record['related_service_ids']=implode(',',array_column(fetch_all('SELECT service_id FROM trainer_services WHERE trainer_id=? ORDER BY service_id',[$record['id']]),'service_id'));
+        if($record['kind']==='service') $record['related_trainer_ids']=implode(',',array_column(fetch_all('SELECT trainer_id FROM trainer_services WHERE service_id=? ORDER BY trainer_id',[$record['id']]),'trainer_id'));
     }
     $fields=[];
     $languages=['en'=>'English','mk'=>'Македонски','sq'=>'Shqip','de'=>'Deutsch','fr'=>'Français','it'=>'Italiano'];

@@ -130,7 +130,21 @@ function content_select(): string
 {
     return 'SELECT c.*,COALESCE(NULLIF(tr.title,\'\'),en.title) title,COALESCE(NULLIF(tr.summary,\'\'),en.summary) summary,COALESCE(NULLIF(tr.body,\'\'),en.body) body,COALESCE(NULLIF(tr.alt,\'\'),en.alt) alt FROM content c JOIN content_translations en ON en.content_id=c.id AND en.language=\'en\' LEFT JOIN content_translations tr ON tr.content_id=c.id AND tr.language=?';
 }
-function decode_content(array $row): array { $row['metadata'] = json_decode($row['metadata'] ?? '{}', true) ?: []; return $row; }
+function decode_content(array $row): array
+{
+    $metadata=is_array($row['metadata']??null)?$row['metadata']:(json_decode($row['metadata']??'{}',true) ?: []);
+    foreach (['specialties','languages','equipment','preparation'] as $field) {
+        // Explicit empty translations are respected; absent ones fall back to English, then legacy data.
+        foreach ([lang(),'en'] as $language) {
+            $translation=$metadata['translations'][$language]??[];
+            if (is_array($translation) && array_key_exists($field,$translation) && is_scalar($translation[$field])) {
+                $metadata[$field]=(string)$translation[$field]; break;
+            }
+        }
+    }
+    $row['metadata']=$metadata;
+    return $row;
+}
 function content_query(string $kind = '', array $filters = []): array
 {
     $sql = content_select() . ' WHERE c.published=1 AND c.archived=0'; $params = [lang()];
@@ -159,7 +173,7 @@ function plans(bool $all = false): array
 }
 function session_select(): string
 {
-    return 'SELECT s.*,c.slug,c.category,c.level,c.format,c.image,c.is_demo,c.published,c.archived,COALESCE(tr.title,en.title) title,COALESCE(tr.summary,en.summary) summary,COALESCE(tr.body,en.body) body,COALESCE(tr.alt,en.alt) alt,COALESCE(tt.title,te.title) trainer,r.name room,(SELECT COUNT(*) FROM bookings b WHERE b.session_id=s.id AND b.status IN (\'confirmed\',\'attended\',\'no_show\')) booked FROM class_sessions s JOIN content c ON c.id=s.class_type_id JOIN content_translations en ON en.content_id=c.id AND en.language=\'en\' LEFT JOIN content_translations tr ON tr.content_id=c.id AND tr.language=? LEFT JOIN content_translations te ON te.content_id=s.trainer_id AND te.language=\'en\' LEFT JOIN content_translations tt ON tt.content_id=s.trainer_id AND tt.language=? JOIN rooms r ON r.id=s.room_id';
+    return 'SELECT s.*,c.slug,c.category,c.level,c.format,c.image,c.metadata,c.is_demo,c.published,c.archived,COALESCE(tr.title,en.title) title,COALESCE(tr.summary,en.summary) summary,COALESCE(tr.body,en.body) body,COALESCE(tr.alt,en.alt) alt,COALESCE(tt.title,te.title) trainer,r.name room,(SELECT COUNT(*) FROM bookings b WHERE b.session_id=s.id AND b.status IN (\'confirmed\',\'attended\',\'no_show\')) booked FROM class_sessions s JOIN content c ON c.id=s.class_type_id JOIN content_translations en ON en.content_id=c.id AND en.language=\'en\' LEFT JOIN content_translations tr ON tr.content_id=c.id AND tr.language=? LEFT JOIN content_translations te ON te.content_id=s.trainer_id AND te.language=\'en\' LEFT JOIN content_translations tt ON tt.content_id=s.trainer_id AND tt.language=? JOIN rooms r ON r.id=s.room_id';
 }
 function sessions(array $filters = []): array
 {
@@ -171,12 +185,12 @@ function sessions(array $filters = []): array
     if (!empty($filters['q'])) { $sql .= ' AND (COALESCE(tr.title,en.title) LIKE ? OR COALESCE(tt.title,te.title) LIKE ?)'; $params[] = '%' . $filters['q'] . '%'; $params[] = '%' . $filters['q'] . '%'; }
     if (!empty($filters['date']) && preg_match('/^\d{4}-\d{2}-\d{2}$/', $filters['date'])) { $sql .= ' AND s.starts_at>=? AND s.starts_at<?'; $date = new DateTimeImmutable($filters['date'], new DateTimeZone('Europe/Skopje')); $params[] = $date->setTimezone(new DateTimeZone('UTC'))->format('Y-m-d H:i:s'); $params[] = $date->modify('+1 day')->setTimezone(new DateTimeZone('UTC'))->format('Y-m-d H:i:s'); }
     $sql .= ' ORDER BY s.starts_at LIMIT 200';
-    $rows = fetch_all($sql, $params);
+    $rows = array_map('decode_content',fetch_all($sql, $params));
     foreach ($rows as &$row) $row['remaining'] = max(0, (int)$row['capacity'] - (int)$row['booked']);
     if (($filters['availability'] ?? '') === 'available') $rows = array_values(array_filter($rows, fn($r) => $r['remaining'] > 0 && $r['status'] === 'scheduled' && $r['starts_at'] > gmdate('Y-m-d H:i:s')));
     return $rows;
 }
-function session_item(int $id): ?array { $row = fetch_one(session_select() . ' WHERE s.id=? AND c.published=1 AND c.archived=0', [lang(),lang(),$id]); if ($row) $row['remaining'] = max(0,(int)$row['capacity']-(int)$row['booked']); return $row; }
+function session_item(int $id): ?array { $row = fetch_one(session_select() . ' WHERE s.id=? AND c.published=1 AND c.archived=0', [lang(),lang(),$id]); if ($row) { $row=decode_content($row); $row['remaining'] = max(0,(int)$row['capacity']-(int)$row['booked']); } return $row; }
 
 require_once __DIR__ . '/domain.php';
 require_once __DIR__ . '/admin.php';

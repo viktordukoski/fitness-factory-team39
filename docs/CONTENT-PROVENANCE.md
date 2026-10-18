@@ -1,5 +1,13 @@
 # Content verification register
 
+## Later supplied logo and photos — 18 October 2026
+
+The user explicitly requested these five uploaded images for the website: `image.png` for the logo, `image1.png`/`image2.png` for strength, `CARDIO.webp` for cardio, `FUNCT.webp` for functional training, and `image3.png` for About. They are copied unchanged to `logo.png`, `strength.png`, `cardio.webp`, `functional.webp` and `about.png` under `public/assets/`. The two strength filenames contain identical bytes. See [image update details](IMAGE-UPDATES.md) and [asset hashes](evidence/image-assets.json).
+
+This later instruction supersedes earlier statements below about using only original illustrations. Pilates/studio, wellness, trainer and location artwork remains where no matching photo was supplied. No ownership, additional business fact, staff identity or service availability is inferred from the photos. The original screenshot/specification provenance below is retained as a historical record.
+
+Public presentation update, 18 October 2026: the user affirmed the supplied gym details and requested removal of public fictional/demo/source-history and confirmation wording. The website uses direct business copy in all six locales. This document and internal source records retain the original provenance; their earlier descriptions of public labels are superseded by the user's latest instruction. No independent business re-verification is claimed.
+
 Prepared 18 October 2026. This application is a Business Practice 2025/2026 university demonstration. Business authorization to present it as an official website has not been supplied. The project notice must remain visible. No actual payments, gym admission, operational bookings, email delivery, partnerships or testimonials are claimed.
 
 ## Supplied primary material

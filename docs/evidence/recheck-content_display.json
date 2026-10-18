@@ -1,0 +1,38 @@
+{
+    "checks": [
+        {
+            "test": "Class detail uses CMS image, alt, preparation and equipment with escaping",
+            "status": "PASS"
+        },
+        {
+            "test": "CMS metadata translations preserve English and shared duration",
+            "status": "PASS"
+        },
+        {
+            "test": "Missing metadata translations fall back publicly but stay empty in the CMS",
+            "status": "PASS"
+        },
+        {
+            "test": "Legacy metadata falls back without migration or data loss",
+            "status": "PASS"
+        },
+        {
+            "test": "Empty CMS class fields use accessible fallbacks without stale language data",
+            "status": "PASS"
+        },
+        {
+            "test": "Custom demo plan and checkout use demo price notices in every locale",
+            "status": "PASS"
+        },
+        {
+            "test": "Membership listing distinguishes a custom demo price",
+            "status": "PASS"
+        },
+        {
+            "test": "Ten sourced prices and published attribution remain unchanged",
+            "status": "PASS"
+        }
+    ],
+    "passed": 8,
+    "total": 8
+}

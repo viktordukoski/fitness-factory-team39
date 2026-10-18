@@ -1,73 +1,126 @@
-# Executed verification — 18 October 2026
+# Executed verification - 18 October 2026
 
-All checks below ran locally. **Nothing was deployed or published.** PASS means the stated check actually ran and met its assertions; it is not a claim of formal security certification or blanket coverage.
+## Supplied-image update — 18 October 2026
 
-## Environment
+The logo and four supplied gym images replace their matching placeholders. The overall layout is retained; About preserves the entire supplied composition. New alt text is localized in all six languages. No upload or deployment occurred.
 
-- Windows, portable PHP **8.5.11**, MariaDB **11.4.5**, a dedicated loopback database ending in `_test`, and Chrome driven by Playwright.
-- The application server listened on `127.0.0.1:8098`; database on loopback only. No system service was installed. Downloaded runtimes and local test credentials stay outside the deliverable repository.
-- Deployment targets PHP **8.3.35 Apache** and MariaDB **11.4.13**. Their exact Docker images and Linux behavior were **NOT VERIFIED** locally because Docker was unavailable. PHP code uses 8.3-compatible syntax; the tested 8.5 runtime is explicitly not represented as a Docker build.
+- **43 public page renders PASS:** home, About, services, facilities and gallery at 320/768/1440 px; additional six-language mobile coverage, service/class detail and login views. Images loaded, logo aspect ratio stayed square, the About image remained uncropped, and no horizontal overflow or browser exceptions were recorded. Three gallery enlargements matched their thumbnail sources and descriptions. [Browser evidence](evidence/image-update.json).
+- **8/8 existing content-display checks PASS:** the fixture uses the new cardio photo, custom CMS alt text remains escaped and visible, and the empty-image fallback uses the strength photo. Executed against the isolated recheck database after the image-helper adjustment. [Content evidence](evidence/image-content-display.json).
+- **Five copied assets match the supplied bytes:** [asset hashes](evidence/image-assets.json). The locally supplied `image1.png` and attached `image2.png` are identical.
+- **56 PHP files and app JavaScript passed syntax checks.** The two subsequently adjusted PHP files were checked again.
 
-## Results
+Final [desktop home](screenshots/image-home-desktop.png), [mobile home](screenshots/image-home-mobile.png), [desktop About](screenshots/image-about-desktop.png) and [mobile About](screenshots/image-about-mobile.png) layouts were visually inspected. The screenshots have the cookie banner dismissed. These checks cover the image update; previous broader reports below retain their original scope. The image update adds no database migration or deployment changes.
+
+## Public-copy revision — 18 October 2026
+
+These checks ran **after** the user's wording revision. The public pages now use direct gym information across all six languages; the third About paragraph, global banner and content/source badges were removed. Operational no-charge, reception-confirmation and email-delivery wording remains factual. No upload or deployment occurred.
+
+| Check | Result | Evidence |
+|---|---|---|
+| Existing local preview: public text | **378 page views PASS** | [Visible-copy inspection](evidence/copy-public-pages.json): 63 routes/detail pages in each of six languages; no requested obsolete wording in the rendered text |
+| Safe content migration | **4/4 PASS** | [Migration evidence](evidence/copy-migration.json): exact-old-value updates preserve CMS edits, order snapshots, prices, hours and private provenance; repeat execution preserves revised text |
+| CMS content/template behavior | **8/8 PASS** | [Display evidence](evidence/copy-content-display.json): class fields, localization, escaping and normal price labels |
+| Account and transaction journeys | **13/13 PASS** | [HTTP evidence](evidence/copy-http.json): existing workflow suite, including saved pass references |
+| Browser interactions/layout | **10/10 PASS** | [Browser evidence](evidence/copy-browser.json): keyboard controls, public/member/admin layouts, calendar, gallery and uploads |
+| Six-language layout sweep | **90/90 renders PASS** | [Locale evidence](evidence/copy-locale-browser.json) |
+| Fresh initialization | **5/5 PASS** | [Fresh-install evidence](evidence/copy-fresh-install.json): migration on empty tables, private initial credential and repeat-safe initialization |
+| PHP syntax and translations | **56 files PASS; no missing literal keys** | [Translation evidence](evidence/copy-translations.json): 381 discovered literal keys, 672 entries per locale |
+
+Current [desktop](screenshots/copy-home-desktop.png) and [mobile](screenshots/copy-home-mobile.png) screenshots were visually inspected. The migration initially exposed a MariaDB collation mismatch; explicit binary comparisons corrected it, and the recorded migration and fresh-install checks passed afterward. Internal keys and private provenance remain for compatibility and traceability. Prices and opening hours did not change. Stored pass identifiers remain intact; member pages use a stable FF reference based on the pass record ID.
+
+This is local verification. Docker, RepoRun Validate, hosted operation, resource behavior and live persistence remain unverified. Earlier reports below retain their original scope and describe the version before this copy revision.
+
+## Earlier pre-upload recheck
+
+The final pre-upload recheck ran locally against a fresh isolated database. **No source upload or deployment was performed during this recheck.** The user has paused publication and will upload the reviewed files themselves. PASS means the stated check actually ran and met its assertions; it does not establish blanket coverage, formal certification or hosted operation.
+
+## Environment and evidence dates
+
+- Windows, portable PHP **8.5.11**, MariaDB **11.4.5**, and Chrome driven by Playwright. The recheck application listened on `127.0.0.1:8099`; the original implementation checks used port `8098`. Databases and web previews were bound to loopback, and test database names ended in `_test`.
+- No system service was installed. Downloaded runtimes and local credentials stay outside the deliverable repository. Test fixtures are fictional and separate from any future hosted database.
+- Prepared deployment images are **PHP 8.3.35 Apache** and **MariaDB 11.4.13**. Their exact combination, Linux behavior and Docker execution remain **NOT VERIFIED**. The tested Windows PHP 8.5 runtime is not represented as a Docker build.
+- Rows linked to `evidence/recheck-*.json` below are final recheck evidence. Current desktop/mobile hero screenshots were also visually inspected. The separate 17-route semantic/navigation audit is historical implementation evidence and was not repeated as that same independent audit during this recheck.
+
+## Final recheck results
 
 | Check | Result | Evidence / scope |
 |---|---|---|
-| PHP syntax | **51/51 files PASS** | Every application, template, seed, migration, CLI and test PHP file linted |
-| JavaScript syntax / SVG markup | PASS | `node --check` on app JavaScript; original SVG files parsed as XML |
-| Domain integration | **20/20 PASS** | `tests/integration.php`, recorded in `evidence/integration-results.json` |
-| True concurrent database requests | **3/3 PASS** | `tests/concurrency.php`, recorded in `evidence/concurrency-results.json` |
-| HTTP workflows | **12/12 PASS** | `tests/http_workflows.py` against the real PHP/PDO app |
-| HTTP edge regressions | **6/6 PASS** | `tests/route_edges.py`, `evidence/route-edges.json`; malformed/impossible dates, oversized query, unknown pass, news pagination and metadata/language alternates |
-| Browser interactions / layout | **10/10 PASS** | `tests/browser.mjs`, `evidence/browser-results.json`; screenshots in `screenshots/` |
-| Six-language layout sweep | **90/90 renders PASS** | `tests/locale_browser.mjs`, `evidence/locale-browser.json`; five public pages in six languages at 320/768/1440 px |
-| Static RepoRun configuration | **15/15 PASS** | `tests/config_check.py`; YAML parsed, prohibited fields absent, resource variables required, app-only ingress and relative persistent mounts |
-| Literal translation coverage | PASS | `tests/translations.php` checked 395 statically discoverable keys; no missing key in six locales, each containing 666 dictionary entries |
-| Runtime translation inventory | PASS for interface labels | Six-language render audit; remaining fallback records are brand/language names, source-record titles and already localized database titles passed through display helpers, not missing interface translations |
-| Independent semantic browser audit | PASS | 17 public routes each had one H1, no duplicate IDs, labeled controls, image alt text and no empty/placeholder links. Mobile More menu, cookie focus restoration and actual month-grid navigation were exercised |
-| Images and upload restrictions | PASS | Local images loaded; executable upload rejected; valid raster upload decoded/re-encoded and retrieved as WebP |
-| Unavailable database recovery | PASS | `tests/error_states.php`, `evidence/error-states.json`; intentionally unreachable database produced a safe HTTP 503 without SQL details or credentials |
-| Fresh schema and seeds | PASS | Migrations executed against an initially empty local MariaDB database |
-| Non-destructive subsequent migrations | PASS | Nine table counts unchanged; stored history retained; no duplicate seed installation |
+| PHP syntax | **56/56 files PASS** | Application, templates, seeds, migration, CLI and test PHP files linted |
+| JavaScript syntax | PASS | App JavaScript passed syntax checking |
+| Domain integration | **20/20 PASS** | [Evidence](evidence/recheck-integration.json); `tests/integration.php` |
+| Concurrent bookings/checkout and migration preservation | **3/3 PASS** | [Evidence](evidence/recheck-concurrency.json); `tests/concurrency.php` |
+| HTTP workflows | **13/13 PASS** | [Evidence](evidence/recheck-http.json); `tests/http_workflows.py`, including password-space preservation and NUL rejection |
+| HTTP edge regressions | **6/6 PASS** | [Evidence](evidence/recheck-route-edges.json); `tests/route_edges.py` |
+| Browser interactions/layout | **10/10 PASS** | [Evidence](evidence/recheck-browser.json); `tests/browser.mjs` |
+| Six-language layout sweep | **90/90 renders PASS** | [Evidence](evidence/recheck-locale-browser.json); `tests/locale_browser.mjs` |
+| Current visual screenshots | Inspected | [Desktop hero](screenshots/recheck-home-desktop.png) and [mobile hero](screenshots/recheck-home-mobile.png) were visually reviewed after the recheck |
+| CMS relationship preservation | **6/6 PASS** | [Evidence](evidence/recheck-admin_relations.json); `tests/admin_relations.php` |
+| CMS content display and translations | **8/8 PASS** | [Evidence](evidence/recheck-content_display.json); `tests/content_display.php` |
+| Administrator deactivation safety | **3/3 PASS** | [Evidence](evidence/recheck-admin_safety.json); includes three simultaneous cross-deactivation races |
+| Fresh database/hosted administrator initialization | **5/5 PASS** | [Evidence](evidence/recheck-fresh-install.json); real empty-database initialization, missing-secret rejection and retry/hash preservation |
+| Isolated administrator seed boundaries | **7/7 PASS** | [Evidence](evidence/recheck-seed_admin.json); `tests/seed_admin.php` |
+| Static RepoRun configuration | **15/15 PASS** | [Evidence](evidence/recheck-config.json); `tests/config_check.py`; not platform Validate or a Docker build |
+| Literal translation coverage | PASS | [Evidence](evidence/recheck-translations.json); 392 statically discoverable keys, no missing key across six locales, 669 dictionary entries per locale |
+| Runtime translation inventory | PASS for interface labels | [Evidence](evidence/recheck-translation_runtime.json); remaining entries are brand/language names, source titles and already localized DB titles passed through display helpers |
+| Unavailable-database recovery | PASS | [Evidence](evidence/recheck-error_states.json); a safe HTTP 503 without SQL details or credentials |
 
-### Domain and concurrency assertions
+These are separate suites with overlapping coverage. Their assertion counts should not be added into one claimed completeness score. Literal scanning does not discover every conditional translation lookup; the content-display suite separately exercises the new price labels in all six locales.
 
-The twenty groups include exact ten package prices, unspecified pass windows, weekend access intersections, registration hashing/duplicate rejection, failed/successful login, profile/password/logout, role checks, checkout success/failure/pending state, idempotency, immutable historical prices after a plan-price edit, private order ownership, minimal pass verification, six-language seed data, favorites, inquiry validation/storage, newsletter consent/duplicates/unsubscribe, CMS publication/archive, trainer/service metadata relationships, booking/cancellation/rescheduling, full/past/cancelled rejection, CSRF, upload rejection, capacity reduction rejection, editable-hour validation and inactive-account/pass denial.
+### Domain, concurrency and initialization scope
 
-The concurrency harness starts independent PHP worker processes with independent PDO connections and a barrier. Two users competing for a one-place session resulted in **one confirmed booking and one `class_full` rejection**. Two simultaneous requests with one checkout key returned **the same order ID**, with exactly **one order, one membership and one pass**. A migration rerun preserved exact counts in nine content/history tables. These are executed races, not sequential simulations.
+The twenty domain groups cover exact ten package prices, unspecified pass windows, weekend access intersections, registration hashing/duplicate rejection, login, profile/password/logout, roles, simulated payment outcomes, idempotency, historical price snapshots, order ownership, minimal pass verification, six-language seed data, favorites, inquiries, newsletter consent/preferences, CMS publication/archive, relationships, bookings/cancellation/rescheduling, unavailable sessions, CSRF, upload rejection, capacity reduction, editable hours and inactive accounts.
+
+The booking/checkout harness starts independent PHP processes and PDO connections behind a barrier. A race for one class place produced one confirmed booking and one `class_full` rejection. Repeated simultaneous checkout returned one order with one membership and one pass. A subsequent migration preserved exact counts in nine content/history tables. This is not a container redeploy test.
+
+Administrator checks exercise concurrent cross-deactivation with serialization on the administrator-role row. The original race could produce a database deadlock and HTTP 503; it was not shown to remove the final administrator. Three simultaneous cross-deactivation races now pass while preserving an active administrator and valid handling of the rejected action.
+
+Fresh-install checks use a real empty local database with hosted-origin configuration. Initialization fails closed without a private initial administrator password; supplying it allows retry, stores a hash and preserves that hash on later initialization. The isolated seed-boundary suite checks related configuration and retry cases without a live database. Neither suite proves RepoRun startup or hosted secret configuration.
+
+### CMS recheck scope
+
+The relation suite exercises the actual admin controller/form data and save handlers. Unchanged trainer/service edits preserve draft and archived relationships in both directions. New links to archived records remain prohibited, public directories still hide unpublished records, and explicit removal works. Fixtures are cleaned by the harness.
+
+The content-display suite saves CMS content and renders the real templates. It checks stored class image/alt/preparation/equipment, escaped text, accessible fallbacks, separate metadata translations, English/legacy fallback and blank untranslated CMS fields. Specialties, languages, equipment and preparation are stored under per-locale metadata; duration remains shared. Explicit empty translations are respected. It also checks custom demonstration-price labels in all six languages and verifies that the ten sourced amounts and their attribution remain unchanged. These fixtures are cleaned by the harness.
 
 ### HTTP and browser scope
 
-The HTTP suite exercised registration → dashboard → logout/login; member/admin separation; checkout → order → pass; repeated checkout; booking review → confirmation → duplicate rejection → cancellation; favorites; inquiry validation/storage/admin visibility; newsletter lifecycle; CSRF/security headers/noindex; six-language routes and translated content; all administration pages/editors; public health and 404 routes.
+The HTTP suite exercises registration/dashboard/logout/login; member/admin separation; checkout/order/pass and repeated checkout; booking review/confirmation/duplicate rejection/cancellation; favorites; contact validation/storage/admin visibility; newsletter lifecycle; CSRF/security headers/noindex; six-language routes; administration pages/editors; health and unknown routes. Passwords with leading/trailing spaces remain unchanged across registration, login and password changes; NUL-containing passwords produce validation errors.
 
-Browser layout checks covered **320, 375, 390, 430, 768, 1024, 1280, 1440 and 1920 pixels** on home, memberships, classes, contact and login. Account pages were additionally checked at 320/390/768/1440, and admin dashboard/content/sessions/plans/users/inquiries at those widths. No page-level horizontal overflow was found. Wide tables/month grids intentionally scroll within their containers, with a class list alternative.
+Browser layout checks cover **320, 375, 390, 430, 768, 1024, 1280, 1440 and 1920 pixels** on home, memberships, classes, contact and login. Selected account/admin pages are checked at 320/390/768/1440. The separate locale sweep covers home, memberships, classes, contact and news in all six languages at 320/768/1440: **90/90 renders passed**. No tested page-level horizontal overflow remained. Tables and month grids may scroll inside their own containers.
 
-A separate sweep rendered home, memberships, classes, contact and news in all six languages at 320/768/1440 pixels. All **90/90 renders** passed after fixing German heading wrapping and flex sizing; overflow was not hidden to mask the problem.
+Browser interactions include optional-cookie rejection, consent-dependent language storage, preferences dialog/Escape, mobile keyboard navigation, list/calendar switching, gallery navigation, login and member/admin screens. Executable upload is rejected and an accepted raster image is re-encoded/retrieved as WebP. No captured JavaScript runtime exception occurred. These checks do not cover every page, browser, viewport or accessibility interaction.
 
-Real-browser interactions checked cookie rejection, no optional language cookie before consent, preferences dialog and Escape, persisted consented language cookie, mobile keyboard navigation, list/calendar switching, gallery lightbox/arrows/Escape, login, member screens, administrator access, and accepted/rejected image uploads. No JavaScript runtime exception occurred. Desktop and mobile hero screenshots were visually inspected.
+## Earlier implementation evidence retained
 
-## Issues found and resolved during testing
+An earlier independent audit checked 17 public routes for one H1, duplicate IDs, labels, alt attributes and empty/placeholder links. It also exercised the mobile More menu, cookie focus restoration and a 35-day month grid. This exact independent audit was **not rerun** for the final recheck. Earlier desktop/mobile screenshots were visually inspected, and 13 original SVG files parsed as XML. Current browser results provide narrower fresh evidence, not a retroactive rerun of all historical checks.
 
-- Reconciled form field names, booking/checkout consent, route IDs, newsletter token management and authenticated newsletter preferences.
-- Fixed language cookie name mismatch and imported the marketing/supplement dictionaries. Preserved raw fallback sentences and added locale-aware date/number display.
-- Corrected admin status transitions, session cancellation controls, settings/source/room editors, readonly email display and password length hints.
-- Fixed trainer/availability filters and database-backed pagination; the news listing has a visible second page with seeded articles.
-- Added visible session change notes, eligibility feedback, cancellation cutoffs and source notes.
-- Added unique detail titles, descriptions, canonical URLs and language alternates.
-- Fixed malformed-date handling and past/completed status display.
-- Fixed German compound headings at the narrowest mobile width and reran the complete six-language layout sweep.
-- Corrected test-only issues: Windows UTF-8 output, lazy-image loading in full-page screenshots, a selector targeting a hidden cookie control, and an invalid tiny PNG fixture. These were not silently counted as application failures or passing checks.
+## Issues corrected
+
+The initial implementation corrected form/route integration, consent and newsletter management, language cookies and translations, admin controls, filters/pagination, eligibility feedback, SEO metadata, invalid dates and narrow German layout overflows. Earlier test-only fixture/selector/encoding repairs were not silently counted as product fixes.
+
+The final pre-upload review additionally corrected:
+
+- Silent loss of draft/archived trainer-service links during an unchanged CMS save.
+- Class details ignoring configured images, alt text, preparation and equipment.
+- Metadata in one locale overwriting the same textual fields in other locales.
+- Custom demo plans being falsely attributed to the supplied Instagram price screenshot.
+- Password handling trimming intentional spaces or allowing NUL-related runtime errors.
+- Concurrent administrator cross-deactivation causing a database deadlock/HTTP 503; no final-administrator lockout was established in the baseline.
 
 ## Explicitly NOT VERIFIED
 
-- Docker image build/start, exact production PHP/MariaDB pair, Apache rules under that image, Linux bind-mount ownership, and memory/CPU behavior under actual quota.
-- RepoRun account/repository/branch connection, team CPU/RAM/disk quota, course-required endpoint policy, platform **Validate**, deployment, live ingress, wake-on-request behavior, and database/uploads surviving a real redeployment.
-- Actual backup/restore on the target platform. Procedures are documented, not executed against a live stack.
-- Current business prices/hours, real services/staff, exact entrance, domain ownership, photo/logo authorization, legal identity or course deadline details beyond supplied evidence.
-- Independent native-speaker review of all six translations, formal screen-reader audit, exhaustive WCAG certification, penetration testing, performance/load testing, and full cross-browser/device testing.
-- No email delivery or real payment test is possible: those integrations intentionally do not exist.
+- Docker image build/start, the exact target PHP/MariaDB pair, Apache rules in that image, Linux mount ownership, and behavior under accepted CPU/memory limits.
+- RepoRun private-repository read access, required key/environment configuration, memory/disk acceptance, course-required ingress policy, platform Validate, deployment, live health, wake-on-request and database/uploads surviving a normal redeployment. Team 39, the private repository/branch/root and an observed 0.5 CPU workspace ceiling are recorded in [DEPLOYMENT.md](DEPLOYMENT.md); these observations do not prove runtime acceptance.
+- Hosted proxy behavior: rate limits currently use `REMOTE_ADDR`. `TRUST_PROXY` is reserved and unused; forwarded client headers are not trusted. Verify whether RepoRun preserves visitor addresses or causes visitors to share the proxy's rate-limit bucket before treating hosted behavior as checked.
+- Backup/restore on the target platform. Procedures exist; a live restoration has not been demonstrated.
+- Current business prices/hours, staff/services, exact entrance, domain ownership, media authorization, legal identity and unspecified course rules.
+- Independent native-speaker review, formal screen-reader/WCAG audit, penetration testing, load/performance testing and full cross-browser/device coverage.
+- Email delivery and real payments: these integrations intentionally do not exist.
 
 ## Reproduce responsibly
 
-Use a fresh isolated database whose name ends in `_test`, run `php bin/migrate.php`, then the documented suites. Tests create fictional records. The main integration and HTTP suites retain their fixtures in that isolated database; concurrency-specific fixtures are cleaned by their harness. Never run this suite against actual member data. Rate limiting is intentionally active, so repeated HTTP runs within the same window may be throttled; wait for the window or use a fresh isolated test database rather than weakening deployed protections.
+Use a fresh disposable database ending in `_test`. Run `php tests/fresh_install.php` against the **empty database before normal migration or other suites**; it exercises initial installation itself. Then run `php bin/migrate.php` as needed and the other documented suites. `tests/admin_safety.php` temporarily changes administrator states and creates a test-only trigger: run it **exclusively in a disposable test database**, with `TRIGGER` granted for that database. Do not run it alongside other suites or against member data. Production application operation does not need the test's `TRIGGER` permission.
 
-Browser tests require a development installation of Playwright and an available Chrome/Chromium executable (`PLAYWRIGHT_MODULE_PATH`, `CHROME_PATH`, `TEST_BASE_URL`, `TEST_OUTPUT_DIR` can be set). Python configuration checks use PyYAML. These are verification tools only; none is required to run the website. The production image excludes tests and documentation.
+Tests create fictional data. The principal integration and HTTP suites retain their fixtures in the isolated database; focused relation/content-display and concurrency harnesses clean their own fixtures. Rate limits stay active; use a fresh isolated test database or wait for the window instead of weakening protections. The final recheck preview on port 8099 was stopped after verification.
+
+Browser tests need development-only Playwright and Chrome/Chromium (`PLAYWRIGHT_MODULE_PATH`, `CHROME_PATH`, `TEST_BASE_URL`, `TEST_OUTPUT_DIR` may be set). Python configuration checks need PyYAML. None is a website runtime dependency. The production image excludes tests and documentation.

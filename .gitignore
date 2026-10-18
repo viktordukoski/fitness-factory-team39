@@ -2,6 +2,9 @@
 .env.*
 !.env.example
 .stack-data/
+.runtime/
+__pycache__/
+*.pyc
 backups/
 *.log
 public/uploads/*

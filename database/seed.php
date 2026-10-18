@@ -27,21 +27,13 @@ function seed_public_content(): void
             ['instagram','https://www.instagram.com/fitnessfactory.mk/','instagram-profile'],
             ['opening_hours',json_encode(['monday_friday'=>'06:00–22:00','saturday'=>'08:00–22:00','sunday'=>'09:00–21:00'],JSON_UNESCAPED_UNICODE),'instagram-hours'],
             ['hours_source_date','2023-10-19','instagram-hours'],
-            ['price_notice','Published prices from an undated supplied screenshot; current prices and terms require confirmation.','instagram-prices'],
-            ['business_notice','University demonstration. Not an authorized official website; no real payments, bookings or gym admission.','project-demo'],
-            ['booking_policy','Fictional policy: active simulated membership covering the class and its access window; cancel at least 60 minutes before the start unless the session states another cutoff. Class inclusion in real packages is unverified.','project-demo'],
-            ['mail_behavior','Forms are stored for the project administrator. No email or newsletter delivery is configured.','project-demo'],
+            ['price_notice','Compare membership prices and access hours to find the option that fits your routine.','instagram-prices'],
+            ['business_notice','Explore Fitness Factory, compare memberships and plan your next training session.','project-demo'],
+            ['booking_policy','An active membership must cover the class and its access hours. Cancel at least 60 minutes before the start unless the class shows a different deadline.','project-demo'],
+            ['mail_behavior','Contact messages and newsletter preferences are saved on this website. No automated emails are sent.','project-demo'],
         ];
         foreach ($settings as [$key,$value,$source]) execute('INSERT IGNORE INTO site_settings(setting_key,value,source_id) VALUES(?,?,?)',[$key,$value,$sourceIds[$source]]);
         $languages = ['en','mk','sq','de','fr','it'];
-        $demoNotes = [
-            'This is fictional demonstration content for a university project. It does not confirm a current real service or staff member.',
-            'Ова е измислена демонстративна содржина за универзитетски проект. Не потврдува тековна вистинска услуга или вработен.',
-            'Kjo është përmbajtje imagjinare demonstruese për një projekt universitar. Nuk konfirmon shërbim ose punonjës real aktual.',
-            'Dies ist fiktiver Demonstrationsinhalt eines Hochschulprojekts. Er bestätigt kein aktuelles reales Angebot oder Personal.',
-            'Ce contenu fictif sert à un projet universitaire. Il ne confirme aucun service ni membre du personnel réel actuel.',
-            'Questo contenuto immaginario appartiene a un progetto universitario. Non conferma servizi o personale reali attuali.',
-        ];
         foreach (require __DIR__ . '/content-data.php' as $record) {
             [$kind,$slug,$category,$level,$format,$image,$demo,$titles,$summaries] = $record;
             $source = $demo ? 'project-demo' : (in_array($slug,['strength-equipment','cardio-equipment'],true) ? 'prosport-2023' : (in_array($slug,['studio-space','wellness-history'],true) ? 'linkedin-project' : 'instagram-profile'));
@@ -50,7 +42,7 @@ function seed_public_content(): void
             execute('INSERT IGNORE INTO content(kind,slug,category,level,format,image,is_demo,source_id,published_at,metadata) VALUES(?,?,?,?,?,?,?,?,UTC_TIMESTAMP(),?)',[$kind,$slug,$category,$level,$format,$image ? 'assets/'.$image : '',$demo,$sourceIds[$source],json_encode(['illustration'=>'original_project_artwork','source_status'=>$demo ? 'fictional_demo' : 'source_current_validity_unconfirmed'],JSON_UNESCAPED_UNICODE)]);
             $id = (int)fetch_one('SELECT id FROM content WHERE slug=?',[$slug])['id'];
             foreach ($languages as $n=>$language) {
-                $body = $summaries[$n] . ($demo && !in_array($kind,['faq','gallery'],true) ? "\n\n" . $demoNotes[$n] : '');
+                $body = $summaries[$n];
                 execute('INSERT IGNORE INTO content_translations(content_id,language,title,summary,body,alt) VALUES(?,?,?,?,?,?)',[$id,$language,$titles[$n],$summaries[$n],$body,$image ? $titles[$n] : '']);
             }
         }
@@ -67,19 +59,19 @@ function seed_public_content(): void
             ['year-full','membership',365,18000,'06:00:00','22:00:00',['One year · extended','Една година · продолжен','Një vit · e zgjeruar','Ein Jahr · erweitert','Un an · étendu','Un anno · esteso']],
         ];
         $descriptions = [
-            'Published Instagram package price; current validity needs confirmation. Access is limited by daily opening hours. Classes, wellness, renewals and refunds are not verified inclusions or terms. Checkout is simulated. Demo validity: %d days from activation; this is a project rule.',
-            'Цена од објавен Instagram пакет; тековната важност треба да се потврди. Влезот е ограничен со дневното работно време. Часови, велнес, обновувања и враќање пари не се потврдени услови. Плаќањето е симулирано. Демо важност: %d дена од активирање; проектно правило.',
-            'Çmim i publikuar në Instagram; vlefshmëria aktuale kërkon konfirmim. Hyrja kufizohet nga orari ditor. Orët, mirëqenia, rinovimet dhe rimbursimet nuk janë kushte të verifikuara. Pagesa është e simuluar. Vlefshmëri demo: %d ditë nga aktivizimi; rregull projekti.',
-            'Veröffentlichter Instagram-Paketpreis; aktuelle Gültigkeit bitte bestätigen lassen. Zugang nur innerhalb der täglichen Öffnungszeiten. Kurse, Wellness, Verlängerungen und Erstattungen sind nicht bestätigt. Zahlung simuliert. Demogültigkeit: %d Tage ab Aktivierung; eine Projektregel.',
-            'Tarif publié sur Instagram ; validité actuelle à confirmer. Accès limité aux horaires quotidiens. Cours, bien-être, renouvellements et remboursements ne sont pas confirmés. Paiement simulé. Validité fictive : %d jours après activation ; règle du projet.',
-            'Prezzo pubblicato su Instagram; validità attuale da confermare. Accesso limitato agli orari giornalieri. Corsi, benessere, rinnovi e rimborsi non sono condizioni confermate. Pagamento simulato. Validità demo: %d giorni dall’attivazione; regola del progetto.',
+            'Valid for %d days from activation. Access follows the hours shown for your membership and the gym’s daily opening hours.',
+            'Важи %d дена од активирањето. Влезот е во рамките на часовите на членарината и дневното работно време на теретаната.',
+            'I vlefshëm për %d ditë nga aktivizimi. Hyrja ndjek orarin e anëtarësimit dhe orarin ditor të palestrës.',
+            'Gültig für %d Tage ab Aktivierung. Der Zugang richtet sich nach den Zeiten Ihrer Mitgliedschaft und den täglichen Öffnungszeiten.',
+            'Valable %d jours à compter de l’activation. L’accès suit les horaires de votre abonnement et les heures d’ouverture de la salle.',
+            'Valido per %d giorni dall’attivazione. L’accesso segue gli orari dell’abbonamento e quelli giornalieri della palestra.',
         ];
         foreach ($planRows as [$slug,$kind,$days,$price,$start,$end,$titles]) {
             execute('INSERT IGNORE INTO membership_plans(slug,kind,duration_days,price,access_start,access_end,source_id) VALUES(?,?,?,?,?,?,?)',[$slug,$kind,$days,$price,$start,$end,$sourceIds['instagram-prices']]);
             $id = (int)fetch_one('SELECT id FROM membership_plans WHERE slug=?',[$slug])['id'];
             foreach ($languages as $n=>$language) execute('INSERT IGNORE INTO membership_plan_translations(plan_id,language,title,description) VALUES(?,?,?,?)',[$id,$language,$titles[$n],sprintf($descriptions[$n],$days)]);
         }
-        execute("INSERT IGNORE INTO rooms(name,capacity) VALUES('Demo strength room',16),('Demo studio',20),('Demo circuit area',12)");
+        execute("INSERT IGNORE INTO rooms(name,capacity) VALUES('Strength room',16),('Studio',20),('Circuit area',12)");
         foreach ([['alex-demo','strength-foundations'],['mira-demo','pilates-example'],['noah-demo','functional-movement']] as [$trainer,$service]) execute('INSERT IGNORE INTO trainer_services(trainer_id,service_id) SELECT t.id,s.id FROM content t CROSS JOIN content s WHERE t.slug=? AND s.slug=?',[$trainer,$service]);
         execute('INSERT INTO schema_migrations(version) VALUES(\'seed-public-v1\')');
     });
@@ -141,7 +133,7 @@ function seed_demonstrations(): void
     foreach ($classes as [$key,$class,$trainer,$room,$offset,$time,$duration,$capacity,$status]) {
         $startLocal = $today->modify(($offset >= 0 ? '+' : '') . $offset . ' days')->setTime((int)substr($time,0,2),(int)substr($time,3,2));
         $start = $startLocal->setTimezone(new DateTimeZone('UTC'));
-        execute('INSERT IGNORE INTO class_sessions(seed_key,class_type_id,trainer_id,room_id,starts_at,ends_at,capacity,status,change_note) SELECT ?,c.id,t.id,?,?,?,?,?,? FROM content c CROSS JOIN content t WHERE c.slug=? AND t.slug=?',[$key,$room,$start->format('Y-m-d H:i:s'),$start->modify('+'.$duration.' minutes')->format('Y-m-d H:i:s'),$capacity,$status,$status === 'cancelled' ? 'Fictional cancellation example. No notification was sent.' : '',$class,$trainer]);
+        execute('INSERT IGNORE INTO class_sessions(seed_key,class_type_id,trainer_id,room_id,starts_at,ends_at,capacity,status,change_note) SELECT ?,c.id,t.id,?,?,?,?,?,? FROM content c CROSS JOIN content t WHERE c.slug=? AND t.slug=?',[$key,$room,$start->format('Y-m-d H:i:s'),$start->modify('+'.$duration.' minutes')->format('Y-m-d H:i:s'),$capacity,$status,$status === 'cancelled' ? 'This class has been cancelled. Check My Bookings for updates.' : '',$class,$trainer]);
     }
     $full = (int)fetch_one('SELECT id FROM class_sessions WHERE seed_key=\'full-strength\'')['id'];
     execute('INSERT IGNORE INTO bookings(reference,user_id,session_id) VALUES(?,?,?)',[reference('FFB'),$userId,$full]);

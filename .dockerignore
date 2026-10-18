@@ -3,6 +3,9 @@
 .env.*
 !.env.example
 .stack-data
+.runtime
+__pycache__
+*.pyc
 backups
 tests
 docs

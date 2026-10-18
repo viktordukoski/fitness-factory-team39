@@ -1,0 +1,22 @@
+{
+    "checks": [
+        {
+            "test": "Existing CMS edits survive the copy migration",
+            "status": "PASS"
+        },
+        {
+            "test": "Order snapshots, prices, hours and private provenance are unchanged",
+            "status": "PASS"
+        },
+        {
+            "test": "All six equipment descriptions receive the revised copy",
+            "status": "PASS"
+        },
+        {
+            "test": "Repeating migration preserves the revised text and historical records",
+            "status": "PASS"
+        }
+    ],
+    "passed": 4,
+    "total": 4
+}

@@ -1,0 +1,26 @@
+{
+    "checks": [
+        {
+            "test": "Fresh hosted install without a private admin password fails closed",
+            "status": "PASS"
+        },
+        {
+            "test": "Retry completes real schema and hosted seeding with a private hash",
+            "status": "PASS"
+        },
+        {
+            "test": "Initialization output does not contain the supplied password",
+            "status": "PASS"
+        },
+        {
+            "test": "Later migrations preserve seeded row counts and private administrator hash",
+            "status": "PASS"
+        },
+        {
+            "test": "All ten sourced prices survive first-install retry",
+            "status": "PASS"
+        }
+    ],
+    "passed": 5,
+    "total": 5
+}

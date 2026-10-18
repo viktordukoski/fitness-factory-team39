@@ -1,0 +1,58 @@
+{
+  "checks": [
+    {
+      "test": "All public routes, health and 404",
+      "status": "PASS"
+    },
+    {
+      "test": "Registration, dashboard and member/admin access boundary",
+      "status": "PASS"
+    },
+    {
+      "test": "Password spaces preserved through registration/change/login and NUL rejected",
+      "status": "PASS"
+    },
+    {
+      "test": "Administrator login",
+      "status": "PASS"
+    },
+    {
+      "test": "Account order isolation after administrator login",
+      "status": "PASS"
+    },
+    {
+      "test": "Checkout, repeated submission and digital pass",
+      "status": "PASS"
+    },
+    {
+      "test": "Schedule → booking review → confirm → duplicate rejection → cancel",
+      "status": "PASS"
+    },
+    {
+      "test": "Favorite add/list/remove",
+      "status": "PASS"
+    },
+    {
+      "test": "Inquiry validation/storage/admin visibility and newsletter lifecycle",
+      "status": "PASS"
+    },
+    {
+      "test": "CSRF rejection, security headers and noindex",
+      "status": "PASS"
+    },
+    {
+      "test": "All six language routes and localized database content",
+      "status": "PASS"
+    },
+    {
+      "test": "All protected administration pages and editors",
+      "status": "PASS"
+    },
+    {
+      "test": "Logout and sign-in again",
+      "status": "PASS"
+    }
+  ],
+  "passed": 13,
+  "total": 13
+}

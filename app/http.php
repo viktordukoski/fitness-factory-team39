@@ -7,6 +7,12 @@ function input(string $key, string $default = '', ?array $from = null): string
     $value = ($from ?? $_REQUEST)[$key] ?? $default;
     return is_string($value) ? trim($value) : $default;
 }
+function password_input(string $key): string
+{
+    // Password bytes must agree with CLI/seed hashing; surrounding spaces are valid.
+    $value = $_POST[$key] ?? '';
+    return is_string($value) ? $value : '';
+}
 function redirect_to(string $page, array $params = []): never
 {
     header('Location: ' . url($page, $params), true, 303);
@@ -45,11 +51,11 @@ function process_post(string $page): void
     $action = input('action'); $id = (int)input('id');
     if ($action === 'register') {
         if (input('terms',input('consent')) !== '1') throw new RuntimeException('consent_required');
-        register_user(input('name'),input('email'),input('password'),lang());
-        login_user(input('email'),input('password'));
+        register_user(input('name'),input('email'),password_input('password'),lang());
+        login_user(input('email'),password_input('password'));
         flash(t('account_created')); login_destination();
     }
-    if ($action === 'login') { login_user(input('email'),input('password')); flash(t('welcome_back')); login_destination(); }
+    if ($action === 'login') { login_user(input('email'),password_input('password')); flash(t('welcome_back')); login_destination(); }
     if ($action === 'logout') { logout_user(); redirect_to('home'); }
     if ($action === 'contact') { if(input('consent')!=='1') throw new RuntimeException('consent_required'); save_contact($_POST); flash(t('contact_saved')); redirect_to('contact'); }
     if (in_array($action, ['newsletter','subscribe'], true)) {
@@ -77,7 +83,7 @@ function process_post(string $page): void
             unset($_SESSION['checkout_keys'][(int)input('plan_id', (string)$id)]);
             redirect_to('order', ['id'=>$orderId]);
         case 'profile': save_profile($uid,$_POST); $_GET['lang']=input('language','en'); flash(t('profile_saved')); redirect_to('settings');
-        case 'password': change_password($uid,input('current_password'),input('new_password')); flash(t('password_changed')); redirect_to('settings');
+        case 'password': change_password($uid,password_input('current_password'),password_input('new_password')); flash(t('password_changed')); redirect_to('settings');
         case 'newsletter_update': set_newsletter_preference($uid,input('subscribed') === '1'); flash(t('preferences_saved')); redirect_to('settings');
     }
     require_admin();

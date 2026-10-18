@@ -1,0 +1,87 @@
+{
+    "runtime": "8.5.11",
+    "checks": [
+        {
+            "test": "Ten sourced package prices and access windows",
+            "status": "PASS"
+        },
+        {
+            "test": "Opening-hour intersection including weekend limits",
+            "status": "PASS"
+        },
+        {
+            "test": "Registration password hashing and duplicate rejection",
+            "status": "PASS"
+        },
+        {
+            "test": "Login, role authorization, profile, password and logout",
+            "status": "PASS"
+        },
+        {
+            "test": "Successful checkout, immutable price and one digital pass",
+            "status": "PASS"
+        },
+        {
+            "test": "Pending and failed payment entitlement boundaries + admin confirmation",
+            "status": "PASS"
+        },
+        {
+            "test": "Owned orders and private records inaccessible to other account",
+            "status": "PASS"
+        },
+        {
+            "test": "Six database locales have actual translations",
+            "status": "PASS"
+        },
+        {
+            "test": "Favorites add\/remove, uniqueness and ownership",
+            "status": "PASS"
+        },
+        {
+            "test": "Contact validation and stored inquiry, no mail claim",
+            "status": "PASS"
+        },
+        {
+            "test": "Newsletter consent, duplicate and token unsubscribe",
+            "status": "PASS"
+        },
+        {
+            "test": "Admin CRUD, publication and archival on public query",
+            "status": "PASS"
+        },
+        {
+            "test": "Create session, book, reject duplicate, preserve capacity",
+            "status": "PASS"
+        },
+        {
+            "test": "Reschedule\/cancel session produces member-visible changes and audit",
+            "status": "PASS"
+        },
+        {
+            "test": "Past and full-session rejection",
+            "status": "PASS"
+        },
+        {
+            "test": "CSRF enforcement and defensive upload rejection",
+            "status": "PASS"
+        },
+        {
+            "test": "Admin cannot reduce capacity below two confirmed bookings",
+            "status": "PASS"
+        },
+        {
+            "test": "CMS validates hours and changes effective weekend access",
+            "status": "PASS"
+        },
+        {
+            "test": "Published search and category filtering",
+            "status": "PASS"
+        },
+        {
+            "test": "Inactive user cannot authenticate or use entitlement",
+            "status": "PASS"
+        }
+    ],
+    "passed": 20,
+    "total": 20
+}

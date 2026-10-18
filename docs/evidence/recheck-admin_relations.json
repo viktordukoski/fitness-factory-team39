@@ -1,0 +1,30 @@
+{
+    "checks": [
+        {
+            "test": "Trainer edit and unchanged save retain draft and archived links",
+            "status": "PASS"
+        },
+        {
+            "test": "Trainer cannot add a new link to archived content",
+            "status": "PASS"
+        },
+        {
+            "test": "Service edit and unchanged save retain draft and archived links",
+            "status": "PASS"
+        },
+        {
+            "test": "Service cannot add a new link to archived content",
+            "status": "PASS"
+        },
+        {
+            "test": "Public related directories still hide draft and archived records",
+            "status": "PASS"
+        },
+        {
+            "test": "An administrator can explicitly remove a historical relation",
+            "status": "PASS"
+        }
+    ],
+    "passed": 6,
+    "total": 6
+}

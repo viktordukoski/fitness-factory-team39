@@ -51,6 +51,7 @@ visitor = Client()
 member = Client()
 admin = Client()
 suffix = str(time.time_ns())
+member_password = '  HttpFactory!2026  '
 
 def public_routes():
     for page in ['home','about','facilities','services','trainers','classes','memberships','news','gallery','contact','faq','search','privacy','cookies','terms','login','register','newsletter']:
@@ -63,12 +64,24 @@ def public_routes():
 check('All public routes, health and 404', public_routes)
 
 def register_flow():
-    status, body, url, _ = member.post('register','register',name='HTTP Demo Member',email=f'http-{suffix}@example.test',password='HttpFactory!2026',consent='1')
+    status, body, url, _ = member.post('register','register',name='HTTP Demo Member',email=f'http-{suffix}@example.test',password=member_password,consent='1')
     expect(status == 200 and 'page=dashboard' in url, f'Registration failed: {status} {url}')
     expect('HTTP Demo Member' in body)
     expect(member.get('admin')[0] == 403, 'Member accessed admin')
     expect(visitor.get('dashboard')[2].find('page=login') >= 0)
 check('Registration, dashboard and member/admin access boundary', register_flow)
+
+def password_bytes_flow():
+    global member_password
+    replacement = '  ChangedFactory!2026  '
+    expect(member.post('settings','password',current_password=member_password,new_password=replacement)[0]==200, 'Password change rejected valid surrounding spaces')
+    member_password = replacement
+    expect(member.post('settings','password',current_password=member_password,new_password='Invalid\0Factory!2026')[0]==422, 'NUL password was not rejected as validation')
+    expect(member.post('settings','logout')[0]==200)
+    expect(member.post('login','login',email=f'http-{suffix}@example.test',password=member_password.strip())[0]==422, 'Trimmed password incorrectly accepted')
+    status, _, url, _ = member.post('login','login',email=f'http-{suffix}@example.test',password=member_password)
+    expect(status==200 and 'page=dashboard' in url, 'Exact password bytes were not preserved')
+check('Password spaces preserved through registration/change/login and NUL rejected', password_bytes_flow)
 
 def checkout_flow():
     status, body, _, _ = member.get('checkout',id=4)
@@ -79,7 +92,7 @@ def checkout_flow():
     expect(first[0]==200 and 'page=order' in first[2], f'Checkout failed: {first[0]}')
     again=member.post('checkout','checkout',**fields)
     expect(first[2]==again[2], 'Repeated checkout created another order')
-    expect('DEMO' in member.get('passes')[1])
+    expect(re.search(r'FF-\d{6,}', member.get('passes')[1]), 'Membership pass reference missing')
     order_id=urllib.parse.parse_qs(urllib.parse.urlparse(first[2]).query)['id'][0]
     expect(visitor.get('order',id=order_id)[2].find('page=login') >= 0)
     check('Account order isolation after administrator login',lambda: expect(admin.get('order',id=order_id)[0]==404))
@@ -150,7 +163,7 @@ check('All protected administration pages and editors',admin_routes)
 def logout_flow():
     expect(member.post('settings','logout')[0]==200)
     expect('page=login' in member.get('dashboard')[2])
-    expect(member.post('login','login',email=f'http-{suffix}@example.test',password='HttpFactory!2026')[0]==200)
+    expect(member.post('login','login',email=f'http-{suffix}@example.test',password=member_password)[0]==200)
 check('Logout and sign-in again',logout_flow)
 
 print(json.dumps(dict(checks=results,passed=sum(r['status']=='PASS' for r in results),total=len(results)),ensure_ascii=False,indent=2))

@@ -60,7 +60,7 @@ function admin_save_content(int $adminId, int $id, array $data): int
         if ($existing && $existing['kind'] !== $kind) throw new RuntimeException('validation',422);
         $duplicate = fetch_one('SELECT id FROM content WHERE slug=? AND id<>?',[$slug,$id]); if ($duplicate) throw new RuntimeException('validation',422);
         $metadata = json_decode($existing['metadata'] ?? '{}',true) ?: [];
-        foreach (['specialties','languages','equipment','preparation'] as $field) if (array_key_exists($field,$data)) $metadata[$field] = text_input($data[$field],0,2000);
+        foreach (['specialties','languages','equipment','preparation'] as $field) if (array_key_exists($field,$data)) $metadata['translations'][$language][$field] = text_input($data[$field],0,2000);
         if (array_key_exists('duration_minutes',$data)) {
             $duration=(int)$data['duration_minutes']; if ($duration<0 || $duration>1440) throw new RuntimeException('validation',422);
             $metadata['duration_minutes']=$duration;
@@ -76,7 +76,14 @@ function admin_save_content(int $adminId, int $id, array $data): int
             $raw=is_array($data[$relationField])?$data[$relationField]:explode(',',(string)$data[$relationField]);
             $related=array_values(array_unique(array_filter(array_map('intval',$raw))));
             if (count($related)>100) throw new RuntimeException('validation',422);
-            foreach ($related as $relatedId) if (!fetch_one('SELECT id FROM content WHERE id=? AND kind=? AND archived=0',[$relatedId,$kind==='trainer'?'service':'trainer'])) throw new RuntimeException('validation',422);
+            $relatedColumn=$kind==='trainer'?'service_id':'trainer_id';
+            $ownerColumn=$kind==='trainer'?'trainer_id':'service_id';
+            $existingRelated=array_map('intval',array_column(fetch_all('SELECT '.$relatedColumn.' FROM trainer_services WHERE '.$ownerColumn.'=?',[$id]),$relatedColumn));
+            foreach ($related as $relatedId) {
+                $target=fetch_one('SELECT id,archived FROM content WHERE id=? AND kind=?',[$relatedId,$kind==='trainer'?'service':'trainer']);
+                // Preserve historical links, while preventing a new link to an archived record.
+                if (!$target || ($target['archived'] && !in_array($relatedId,$existingRelated,true))) throw new RuntimeException('validation',422);
+            }
             execute('DELETE FROM trainer_services WHERE '.($kind==='trainer'?'trainer_id':'service_id').'=?',[$id]);
             foreach ($related as $relatedId) execute('INSERT INTO trainer_services(trainer_id,service_id) VALUES(?,?)',$kind==='trainer'?[$id,$relatedId]:[$relatedId,$id]);
         }
@@ -156,6 +163,11 @@ function admin_status(int $adminId, string $entity, int $id, string $status): vo
     if ($entity === 'orders') { confirm_order($adminId,$id,$status); return; }
     transaction(function () use ($adminId,$entity,$id,$status): void {
         if ($entity === 'users') {
+            // Serialize account-state changes before taking user locks. Competing
+            // administrators must not deadlock by disabling each other's account.
+            fetch_one("SELECT id FROM roles WHERE name='admin' FOR UPDATE");
+            // An actor can have been disabled while waiting for the shared lock.
+            assert_admin($adminId);
             $active = $status === 'active' ? 1 : ($status === 'inactive' ? 0 : -1); if ($active < 0 || (!$active && $id === $adminId)) throw new RuntimeException('last_admin',422);
             $row = fetch_one('SELECT * FROM users WHERE id=? FOR UPDATE',[$id]); if (!$row) throw new RuntimeException('not_found',404);
             if (!$active && $row['role_id'] == 1 && (int)fetch_one('SELECT COUNT(*) total FROM users WHERE role_id=1 AND active=1')['total'] <= 1) throw new RuntimeException('last_admin',422);

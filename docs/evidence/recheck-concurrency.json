@@ -1,0 +1,69 @@
+{
+    "runtime": "8.5.11",
+    "checks": [
+        {
+            "test": "Two independent simultaneous connections compete for final place",
+            "status": "PASS",
+            "workers": [
+                {
+                    "status": "rejected",
+                    "reason": "class_full"
+                },
+                {
+                    "status": "success",
+                    "id": 7
+                }
+            ],
+            "confirmed_count": 1
+        },
+        {
+            "test": "Simultaneous repeated checkout creates one order, membership and pass",
+            "status": "PASS",
+            "workers": [
+                {
+                    "status": "success",
+                    "id": 8
+                },
+                {
+                    "status": "success",
+                    "id": 8
+                }
+            ],
+            "database_counts": {
+                "orders": 1,
+                "memberships": 1,
+                "passes": 1
+            }
+        },
+        {
+            "test": "Subsequent migration preserves all content and transaction row counts",
+            "status": "PASS",
+            "before": {
+                "users": 3,
+                "content": 28,
+                "content_translations": 163,
+                "class_sessions": 13,
+                "bookings": 7,
+                "membership_plans": 10,
+                "orders": 8,
+                "memberships": 6,
+                "passes": 5
+            },
+            "after": {
+                "users": 3,
+                "content": 28,
+                "content_translations": 163,
+                "class_sessions": 13,
+                "bookings": 7,
+                "membership_plans": 10,
+                "orders": 8,
+                "memberships": 6,
+                "passes": 5
+            },
+            "migration_output": "Database ready; existing content and history preserved.",
+            "migration_error": ""
+        }
+    ],
+    "passed": 3,
+    "total": 3
+}

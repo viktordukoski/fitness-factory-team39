@@ -1,8 +1,12 @@
 # Fitness Factory Ohrid — university demonstration
 
-A PHP/MariaDB presentation and member-service application for Business Practice 2025/2026. All payments, passes, trainers and class reservations are demonstrations. This project does not claim to be Fitness Factory's authorized official website.
+A PHP/MariaDB presentation and member-service application for Business Practice 2025/2026. Checkout records application orders without collecting money; bookings must be checked with reception before attending. This repository does not establish authorization as the business's official website.
 
-**Deployment status: authorized and being configured for RepoRun Team 39.** The source repository is private; the requested website endpoint will be public. No successful platform validation or live deployment is claimed until recorded in [DEPLOYMENT.md](docs/DEPLOYMENT.md).
+**Public-copy update — 18 October 2026:** the user affirmed the supplied gym details as real and requested direct business copy in all six languages. Public fictional/demo/simulated, Instagram, historical, unconfirmed and published-price framing, content badges and the global banner were removed; equipment names are listed directly and the third About paragraph was deleted. This later instruction supersedes the original specification's public-label requirements. The original specification, private provenance and internal source flags remain a truthful record of how content was supplied or created; this copy change is not independent business re-verification. Checkout still charges no money, bookings are saved in this application and require reception confirmation, and stored contact/newsletter entries do not imply email delivery.
+
+**Deployment status: awaiting RepoRun setup.** Source updates target the private GitHub repository [viktordukoski/fitness-factory-team39](https://github.com/viktordukoski/fitness-factory-team39), branch `main`. RepoRun Team 39's repository field has been set; repository access keys, environment values, Validate and deployment have not been completed. There is no shared website link yet.
+
+For future manual source updates, follow [UPLOAD.md](docs/UPLOAD.md). The user authorized a GitHub source push on 18 October 2026; deployment remains paused. Uploading the files to GitHub does not deploy this application. Local test results do not verify a Docker build or a working RepoRun deployment; see [DEPLOYMENT.md](docs/DEPLOYMENT.md) for the remaining steps.
 
 ## Run locally with Docker
 
@@ -32,7 +36,7 @@ Seed files store password hashes. `DEMO_MODE=false` rejects all seeded demo acco
 
 ## What is implemented
 
-- Public business overview, sourced facilities/equipment, searchable services and fictional trainer profiles, memberships, class list/calendar, news, gallery, FAQ, contact, directions, global search and policies.
+- Public business overview, facilities/equipment, searchable services and trainer profiles, memberships, class list/calendar, news, gallery, FAQ, contact, directions, global search and policies. Public wording follows the later copy instruction recorded above; content origin remains documented privately.
 - Six locales: Macedonian, English, Albanian, German, French and Italian. Database translations and interface dictionaries use English fallback for missing CMS translations. Locale selection preserves the current route and persists in the necessary session; cross-visit language cookies require optional preference consent.
 - Registration/login/logout, profile/password changes, favorites, bookings, order history and printable demo passes with opaque status-verification links.
 - Transactional capacity checks, duplicate booking protection, cancellation windows, administrator rescheduling/cancellation and member-visible changes.
@@ -42,11 +46,11 @@ Seed files store password hashes. `DEMO_MODE=false` rejects all seeded demo acco
 
 ## Business facts and limitations
 
-The supplied Instagram profile gives **+389 76 435 353**, **15th Korpus No.21, Ohrid 6000**, and [@fitnessfactory.mk](https://www.instagram.com/fitnessfactory.mk/). It does not verify ownership of an operating website at that domain or the precise entrance.
+The supplied profile gives **+389 76 435 353**, **15th Korpus No.21, Ohrid 6000**, and [the social profile](https://www.instagram.com/fitnessfactory.mk/). The user subsequently affirmed the supplied gym details as real. The underlying source record remains unchanged; no separate domain-ownership or entrance verification was performed.
 
-The ten packages are seeded at **300; 1,000; 1,600; 2,000; 4,350; 5,400; 7,700; 9,600; 14,400; 18,000 MKD**, preserving duration/access distinctions. The screenshot has no visible publication date; prices are pending current confirmation. Displayed hours are **Mon–Fri 06:00–22:00, Sat 08:00–22:00, Sun 09:00–21:00**, from a post dated **19 October 2023**, also pending current confirmation. Package windows intersect daily opening hours. Single-session/tourist windows and holiday exceptions are unspecified.
+The ten packages are seeded at **300; 1,000; 1,600; 2,000; 4,350; 5,400; 7,700; 9,600; 14,400; 18,000 MKD**, preserving duration/access distinctions. Displayed hours are **Mon–Fri 06:00–22:00, Sat 08:00–22:00, Sun 09:00–21:00**. These details now appear directly following the user's affirmation. For the private provenance record, the price screenshot has no visible publication date and the hours source is dated **19 October 2023**; their internal source flags were not rewritten as independent verification. Package windows intersect daily opening hours. Single-session/tourist windows and holiday exceptions remain unspecified.
 
-No official email, real staff roster, timetable, qualification, precise area, founding date, current spa availability, class inclusions, parking or accessibility promise has been invented. Historical sources conflict on floor area; the application publishes no definitive area. Photographs from the promotional screenshots are not reused. Local original vector illustrations and fictional avatars are labeled representative.
+The original research did not establish an official email, staff roster, timetable, qualifications, precise area, founding date, spa availability, package inclusions, parking or accessibility arrangements. Public caveats and labels were removed at the user's request; this does not add independent evidence for those details. The conflicting floor-area figures are not published as a definitive area. Promotional screenshot photos are not reused; artwork and profile origins remain in the private provenance record.
 
 Contact submissions and newsletter preferences are stored for project administrators. **No email transport or newsletter delivery is configured.** Anonymous subscribers receive an on-screen management link; account holders manage subscription preferences in Settings. No messages are sent to the real gym.
 
@@ -74,7 +78,7 @@ Prepared PDO statements, hashed passwords, CSRF tokens, session regeneration, ow
 
 Run tests only against an isolated seeded database named with an `_test` suffix. `php tests/integration.php` exercises domain workflows; `php tests/concurrency.php` starts independent worker connections to race the last class place and duplicate checkout. `python tests/http_workflows.py http://127.0.0.1:8080` exercises HTTP journeys. Browser and deployment checks are recorded separately; do not infer a test passed merely because its code exists.
 
-See [TESTING.md](docs/TESTING.md) for executed results and limits, [REQUIREMENTS.md](docs/REQUIREMENTS.md) for the full audit, [ARCHITECTURE.md](docs/ARCHITECTURE.md) for design decisions, [DEPLOYMENT.md](docs/DEPLOYMENT.md) for RepoRun, and [CONTENT-PROVENANCE.md](docs/CONTENT-PROVENANCE.md) for source/asset status. The original requested scope is preserved in [SPECIFICATION.txt](docs/SPECIFICATION.txt).
+The recorded pre-upload recheck predates the latest public-copy change; it is not evidence that the revised wording was already tested. See [TESTING.md](docs/TESTING.md) for separately recorded copy validation, executed results and limits, [REQUIREMENTS.md](docs/REQUIREMENTS.md) for the full audit, [ARCHITECTURE.md](docs/ARCHITECTURE.md) for design decisions, [DEPLOYMENT.md](docs/DEPLOYMENT.md) for RepoRun, and [CONTENT-PROVENANCE.md](docs/CONTENT-PROVENANCE.md) for source/asset status. The original scope remains preserved in [SPECIFICATION.txt](docs/SPECIFICATION.txt), with the later public-copy instruction documented above.
 
 ## Course context
 

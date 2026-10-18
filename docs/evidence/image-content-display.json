@@ -1,0 +1,38 @@
+{
+    "checks": [
+        {
+            "test": "Class detail uses CMS image, alt, preparation and equipment with escaping",
+            "status": "PASS"
+        },
+        {
+            "test": "CMS metadata translations preserve English and shared duration",
+            "status": "PASS"
+        },
+        {
+            "test": "Missing metadata translations fall back publicly but stay empty in the CMS",
+            "status": "PASS"
+        },
+        {
+            "test": "Legacy metadata falls back without migration or data loss",
+            "status": "PASS"
+        },
+        {
+            "test": "Empty CMS class fields use accessible fallbacks without stale language data",
+            "status": "PASS"
+        },
+        {
+            "test": "Plan and checkout use plain price labels in every locale",
+            "status": "PASS"
+        },
+        {
+            "test": "Membership listing displays a custom plan without a provenance badge",
+            "status": "PASS"
+        },
+        {
+            "test": "Ten package prices and private provenance remain unchanged",
+            "status": "PASS"
+        }
+    ],
+    "passed": 8,
+    "total": 8
+}

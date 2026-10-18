@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "assets": [
+    {
+      "supplied": "image.png",
+      "asset": "public/assets/logo.png",
+      "bytes": 56313,
+      "sha256": "b91b2f8995c243c2ad8ba53a82664a1bb21839e6c4347988d693d92df6a22db0",
+      "identical_to_supplied": true
+    },
+    {
+      "supplied": "image2.png",
+      "asset": "public/assets/strength.png",
+      "bytes": 3233380,
+      "sha256": "804539fb744a6feb325a4464e2aac235bba9718805e34f0225cf556d577e6c55",
+      "identical_to_supplied": true
+    },
+    {
+      "supplied": "CARDIO.webp",
+      "asset": "public/assets/cardio.webp",
+      "bytes": 174246,
+      "sha256": "05a78676e7d60513d37e7bdb2cca02cac5f4eda5183eb42c58a946d5e4958f1a",
+      "identical_to_supplied": true
+    },
+    {
+      "supplied": "FUNCT.webp",
+      "asset": "public/assets/functional.webp",
+      "bytes": 146882,
+      "sha256": "5702eca5044ee3d9bbc3ed6705c4e94b23c3f28502e06038b072be460231ec93",
+      "identical_to_supplied": true
+    },
+    {
+      "supplied": "image3.png",
+      "asset": "public/assets/about.png",
+      "bytes": 1906511,
+      "sha256": "da0a696a971bb946928d02c182cb22342801ca03b9dfafd26c98f169f371b4e8",
+      "identical_to_supplied": true
+    }
+  ],
+  "strength_name_note": "image1.png and attached image2.png are byte-identical."
+}

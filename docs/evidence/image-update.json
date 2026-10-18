@@ -1,0 +1,518 @@
+{
+  "date": "2026-10-18",
+  "scope": "Supplied image replacements; local browser verification only",
+  "status": "PASS",
+  "rendered": 43,
+  "lightboxImages": 3,
+  "views": [
+    {
+      "route": "home",
+      "width": 320,
+      "lang": "en",
+      "photos": [
+        "/assets/strength.png",
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp",
+        "/assets/strength.png",
+        "/assets/strength.png",
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "about",
+      "width": 320,
+      "lang": "en",
+      "photos": [
+        "/assets/about.png"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "services",
+      "width": 320,
+      "lang": "en",
+      "photos": [
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "facilities",
+      "width": 320,
+      "lang": "en",
+      "photos": [
+        "/assets/strength.png",
+        "/assets/cardio.webp"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "gallery",
+      "width": 320,
+      "lang": "en",
+      "photos": [
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "home",
+      "width": 768,
+      "lang": "en",
+      "photos": [
+        "/assets/strength.png",
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp",
+        "/assets/strength.png",
+        "/assets/strength.png",
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "about",
+      "width": 768,
+      "lang": "en",
+      "photos": [
+        "/assets/about.png"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "services",
+      "width": 768,
+      "lang": "en",
+      "photos": [
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "facilities",
+      "width": 768,
+      "lang": "en",
+      "photos": [
+        "/assets/strength.png",
+        "/assets/cardio.webp"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "gallery",
+      "width": 768,
+      "lang": "en",
+      "photos": [
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "home",
+      "width": 1440,
+      "lang": "en",
+      "photos": [
+        "/assets/strength.png",
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp",
+        "/assets/strength.png",
+        "/assets/strength.png",
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "about",
+      "width": 1440,
+      "lang": "en",
+      "photos": [
+        "/assets/about.png"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "services",
+      "width": 1440,
+      "lang": "en",
+      "photos": [
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "facilities",
+      "width": 1440,
+      "lang": "en",
+      "photos": [
+        "/assets/strength.png",
+        "/assets/cardio.webp"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "gallery",
+      "width": 1440,
+      "lang": "en",
+      "photos": [
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "home",
+      "width": 320,
+      "lang": "mk",
+      "photos": [
+        "/assets/strength.png",
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp",
+        "/assets/strength.png",
+        "/assets/strength.png",
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "about",
+      "width": 320,
+      "lang": "mk",
+      "photos": [
+        "/assets/about.png"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "gallery",
+      "width": 320,
+      "lang": "mk",
+      "photos": [
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "home",
+      "width": 320,
+      "lang": "sq",
+      "photos": [
+        "/assets/strength.png",
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp",
+        "/assets/strength.png",
+        "/assets/strength.png",
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "about",
+      "width": 320,
+      "lang": "sq",
+      "photos": [
+        "/assets/about.png"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "gallery",
+      "width": 320,
+      "lang": "sq",
+      "photos": [
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "home",
+      "width": 320,
+      "lang": "de",
+      "photos": [
+        "/assets/strength.png",
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp",
+        "/assets/strength.png",
+        "/assets/strength.png",
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "about",
+      "width": 320,
+      "lang": "de",
+      "photos": [
+        "/assets/about.png"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "gallery",
+      "width": 320,
+      "lang": "de",
+      "photos": [
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "home",
+      "width": 320,
+      "lang": "fr",
+      "photos": [
+        "/assets/strength.png",
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp",
+        "/assets/strength.png",
+        "/assets/strength.png",
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "about",
+      "width": 320,
+      "lang": "fr",
+      "photos": [
+        "/assets/about.png"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "gallery",
+      "width": 320,
+      "lang": "fr",
+      "photos": [
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "home",
+      "width": 320,
+      "lang": "it",
+      "photos": [
+        "/assets/strength.png",
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp",
+        "/assets/strength.png",
+        "/assets/strength.png",
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "about",
+      "width": 320,
+      "lang": "it",
+      "photos": [
+        "/assets/about.png"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "gallery",
+      "width": 320,
+      "lang": "it",
+      "photos": [
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "services",
+      "width": 1440,
+      "lang": "en",
+      "photos": [
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "detail",
+      "width": 390,
+      "lang": "en",
+      "id": "1",
+      "photos": [
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "detail",
+      "width": 390,
+      "lang": "en",
+      "id": "2",
+      "photos": [
+        "/assets/cardio.webp",
+        "/assets/strength.png",
+        "/assets/functional.webp"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "detail",
+      "width": 390,
+      "lang": "en",
+      "id": "3",
+      "photos": [
+        "/assets/functional.webp",
+        "/assets/strength.png",
+        "/assets/cardio.webp"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "login",
+      "width": 390,
+      "lang": "en",
+      "photos": [
+        "/assets/strength.png"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "class",
+      "width": 390,
+      "lang": "en",
+      "id": "1",
+      "photos": [
+        "/assets/strength.png"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "class",
+      "width": 390,
+      "lang": "en",
+      "id": "9",
+      "photos": [
+        "/assets/strength.png"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "class",
+      "width": 390,
+      "lang": "en",
+      "id": "13",
+      "photos": [
+        "/assets/strength.png"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "gallery",
+      "width": 390,
+      "lang": "en",
+      "photos": [
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "home",
+      "width": 1440,
+      "lang": "en",
+      "photos": [
+        "/assets/strength.png",
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp",
+        "/assets/strength.png",
+        "/assets/strength.png",
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "home",
+      "width": 390,
+      "lang": "en",
+      "photos": [
+        "/assets/strength.png",
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp",
+        "/assets/strength.png",
+        "/assets/strength.png",
+        "/assets/strength.png",
+        "/assets/cardio.webp",
+        "/assets/functional.webp"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "about",
+      "width": 390,
+      "lang": "en",
+      "photos": [
+        "/assets/about.png"
+      ],
+      "status": "PASS"
+    },
+    {
+      "route": "about",
+      "width": 1440,
+      "lang": "en",
+      "photos": [
+        "/assets/about.png"
+      ],
+      "status": "PASS"
+    }
+  ],
+  "failures": []
+}

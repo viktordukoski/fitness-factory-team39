@@ -1,8 +1,10 @@
 # Local and RepoRun operations
 
-Prepared on 18 October 2026. The user has now **authorized deployment to RepoRun Team 39 with public website access**. The private GitHub repository is `viktordukoski/fitness-factory-team39`, branch `main`, repository root `/`. No successful RepoRun Validate, deployment, live ingress or remote persistence result is claimed yet.
+Prepared on 18 October 2026. **The user has authorized a GitHub source push; deployment remains paused.** The private GitHub repository is [viktordukoski/fitness-factory-team39](https://github.com/viktordukoski/fitness-factory-team39), with branch `main` and repository root `/`. RepoRun Team 39's repository field has been set, but repository access keys, environment values, Validate and deployment have not been completed. No live website or remote persistence result is claimed.
 
-The signed-in workspace page shows a **500m (0.5 CPU) workspace ceiling**. Team 39 shows no explicit CPU, memory or disk override. The first deployment will request `WEB_CPUS=0.25`, `DB_CPUS=0.25`, `WEB_MEMORY=512m` and `DB_MEMORY=512m`; memory/disk acceptance and runtime sufficiency still require platform validation and live checks. These are explicit proposed allocations, not a guarantee of capacity.
+Follow [UPLOAD.md](UPLOAD.md) for future manual source updates, and ask to resume RepoRun setup when ready. Uploading source does not itself deploy the website. The local checks in [TESTING.md](TESTING.md) do not verify the Linux Docker build, RepoRun validation or a working public endpoint.
+
+The signed-in workspace page shows a **500m (0.5 CPU) workspace ceiling**. Team 39 shows no explicit CPU, memory or disk override. The proposed first deployment allocation is `WEB_CPUS=0.25`, `DB_CPUS=0.25`, `WEB_MEMORY=512m` and `DB_MEMORY=512m`; these values have not been entered. Memory/disk acceptance and runtime sufficiency still require platform validation and live checks. These are proposed allocations, not a guarantee of capacity.
 
 ## Verified platform reference
 
@@ -65,7 +67,7 @@ The official MariaDB entrypoint initializes its dedicated database/account only 
 
 Persistent paths are `./.stack-data/db:/var/lib/mysql` and `./.stack-data/uploads:/var/www/html/public/uploads`. They stay outside Git and the image. Linux upload ownership becomes `www-data`; permissions are 0750. The parent directory and bind mount must permit container ownership changes. If platform filesystem policy blocks that, arrange directory ownership through the platform administrator, then rerun validation/start; do not use world-writable 0777 permissions. Images contain immutable application code; reset/reclone preserves `.stack-data/` according to RepoRun Docs.
 
-## Authorized RepoRun procedure
+## RepoRun procedure after the user asks to resume
 
 1. Confirm the course access policy, actual team quota, repository URL, branch, reviewer access and authorization to deploy. Configure private repository read access using the supported deploy key or read-only token workflow.
 2. Connect the deployable repository root and branch in the team's stack. Enter environment values and actual limits. Confirm public ingress is allowed or change `stack.yml` to an accepted required policy.
