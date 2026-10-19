@@ -23,7 +23,7 @@ The Apache document root is `public/`. Application code, configuration, SQL and 
 
 ## Demo accounts
 
-These default credentials are for a local university demonstration:
+These default credentials are for demostrational purposes only:
 
 | Role | Email | Password |
 |---|---|---|
